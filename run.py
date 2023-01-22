@@ -1,6 +1,7 @@
 from os import system, name
 from time import sleep
 
+# Code taken from stack overflow
 def clear():
     """
     Clear the console screen
@@ -23,10 +24,17 @@ class UsernameInput:
         name = input("Please tell me your name captain?\n")        
         while True:
             if len(name) == 0:
+                sleep(0.5)
                 print("We are going to need your name for this adventure captain!")
-                name = input("Please tell me your name captain?\n")                
+                name = input("Please tell me your name captain?\n")
+                clear()
+            elif len(name) > 6:
+                sleep(0.5)
+                print("Name is too big captain!")
+                name = input("Please insert a name between 1 and 6 letters\n")
+                clear()
             else:
-                return name
+                return name.capitalize()
 
 
 class Welcome: 
