@@ -61,7 +61,9 @@ class Welcome:
                                `._________`-.   `.   `.___
                                                   `------ ''')
 
-        print(f" {player_name} Welcome to Airship battles!")
+        print(f" {player_name} Welcome to Airship battles!\n")
+        sleep(5)
+        clear()
 
 
 def RunGame():
