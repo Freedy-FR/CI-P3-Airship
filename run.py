@@ -1,16 +1,16 @@
 from os import system, name
 from time import sleep
 
+# Write your code to expect a terminal of 80 characters wide and 24 rows high
+
 # Code taken from stack overflow
 def clear():
     """
     Clear the console screen
     """
- 
     # for windows
     if name == 'nt':
         _ = system('cls')
- 
     # for mac and linux(here, os.name is 'posix')
     else:
         _ = system('clear')
@@ -21,7 +21,7 @@ class UsernameInput:
     Ask for username input and validate name
     """
     def input_name():
-        name = input("Please tell me your name captain?\n")        
+        name = input("Please tell me your name captain?\n")
         while True:
             if len(name) == 0:
                 sleep(0.5)
@@ -34,6 +34,10 @@ class UsernameInput:
                 name = input("Please insert a name between 1 and 6 letters\n")
                 clear()
             else:
+                clear()
+                print("That is a fair name captain!")
+                sleep(2)
+                clear()
                 return name.capitalize()
 
 
@@ -62,10 +66,7 @@ class Welcome:
 
 def RunGame():
 
-    username = UsernameInput.input_name()    
+    username = UsernameInput.input_name()
     Welcome.welcome_screen(username)
 
 RunGame()
-
-
-# Write your code to expect a terminal of 80 characters wide and 24 rows high
