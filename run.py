@@ -36,7 +36,7 @@ class UsernameInput:
             else:
                 clear()
                 print("That is a fair name captain!")
-                sleep(2)
+                sleep(0.5)
                 clear()
                 return name.capitalize()
 
@@ -62,8 +62,44 @@ class Welcome:
                                                   `------ ''')
 
         print(f" {player_name} Welcome to Airship battles!\n")
-        sleep(5)
+        sleep(1)
         clear()
+
+class TableSizeInput:
+    """
+    """
+    def table_size():        
+        print("Please choose your battlefield grid size!")
+        print("4 x 4 Grid insert 4")
+        print("6 x 6 Grid insert 6")
+        print("8 x 8 Grid insert 8")
+        size = input("Please insert your grid size!\n")
+        clear()
+        while True:
+            if len(size) == 0:
+                sleep(0.5)
+                print("We are going to need your prefered battlefield grid!")
+                print("4 x 4 Grid insert 4")
+                print("6 x 6 Grid insert 6")
+                print("8 x 8 Grid insert 8")
+                size = input("Please insert your grid size!\n")
+                clear()
+            elif (size != "4" and size != "6" and size != "8"):
+                sleep(0.5)
+                print("That is a invalid grid size!")
+                print("4 x 4 Grid insert 4")
+                print("6 x 6 Grid insert 6")
+                print("8 x 8 Grid insert 8")
+                size = input("Please insert your grid size!\n")
+                clear()
+            elif (size == "4" or size == "6" or size == "8"):
+                clear()
+                print("That is a fair grid size captain!")
+                sleep(2)
+                clear()
+                return int(size)
+        
+
 
 class SetBoard:
     """
@@ -105,7 +141,7 @@ def RunGame():
     username = UsernameInput.input_name()
     Welcome.welcome_screen(username)
 
-    size = 8
+    size = TableSizeInput.table_size()
 
     player_guess_board = SetBoard([[" "] * size for i in range(size)], size, username)
 
