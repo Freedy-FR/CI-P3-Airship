@@ -1,5 +1,6 @@
 from os import system, name
 from time import sleep
+import random
 
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 
@@ -112,10 +113,9 @@ class SetBoard:
         self.size = size
     
     def print_to_console(self):
-        #Create an username title to the board
-        #Center the username
+
+        #Create an username title to the board and center username
         print("---{:^10}--- ".format(self.username))
-        # print(f"  -- {self.username} --")
 
         #Create the heading based on the size given
         heading = []
@@ -135,24 +135,56 @@ class SetBoard:
             row_number += 1
         print()
 
+class SetAirship:
+    def __init__(self, board, size):
+        self.board = board
+        self.size = size
+
+    def create_airships(self):
+        for i in range((self.size - 1)):
+            self.x_row, self.y_column = random.randint(0, (self.size - 1)), random.randint(0, (self.size - 1))
+            while self.board[self.x_row][self.y_column] == "X":
+                self.x_row, self.y_column = random.randint(0, (self.size - 1)), random.randint(0, (self.size - 1))
+            self.board[self.x_row][self.y_column] = "X"
+        return self.board
+
+    
 
 def RunGame():
 
+    # get username input
     username = UsernameInput.input_name()
+    
+    # display  welcomescreen
     Welcome.welcome_screen(username)
-
+    
+    # get table grid size
     size = TableSizeInput.table_size()
-
+    
+    # set player guess board
     player_guess_board = SetBoard([[" "] * size for i in range(size)], size, username)
 
-    SetBoard.print_to_console(player_guess_board)
-
+    # set enemy hidden board
     computer_hid_board = SetBoard([[" "] * size for i in range(size)], size, "Enemy Hidden")
+    # set computer guess board
     computer_guess_board = SetBoard([[" "] * size for i in range(size)], size, "Enemy")
 
+    # Set enemy ships at random
+    SetAirship.create_airships(computer_hid_board)
+
+    # Set player ships a random
+    SetAirship.create_airships(player_guess_board)
+
+    # Print to visualize in test (computer hidden board)
+    # SetBoard.print_to_console(computer_hid_board)
+
+    # Print enemy hidden board with ships
+    SetBoard.print_to_console(computer_hid_board)
+
+    # print computer guess_board
     SetBoard.print_to_console(computer_guess_board)
 
-    #Print to visualize in test
-    SetBoard.print_to_console(computer_hid_board)
+    # print player guess board
+    SetBoard.print_to_console(player_guess_board)
 
 RunGame()
