@@ -65,10 +65,58 @@ class Welcome:
         sleep(5)
         clear()
 
+class SetBoard:
+    """
+    Create a board instance and print to the console if called
+    """
+
+    def __init__(self, board, size, username):
+        self.board = board
+        self.username = username
+        self.size = size
+    
+    def print_to_console(self):
+        #Create an username title to the board
+        #Center the username
+        print("---{:^10}--- ".format(self.username))
+        # print(f"  -- {self.username} --")
+
+        #Create the heading based on the size given
+        heading = []
+        separator = []
+        for i in range(self.size):
+            heading.append(f"{i}")
+            separator.append(f"|")
+        print("  " + " ".join(heading))
+        print("  " + " ".join(separator))
+
+
+        #Create an instance of the board
+        row_number = 0
+        for row in self.board:
+            # print("%d|%s|" % (row_number, "|".join(row)))
+            print("{}|{}|".format(row_number, "|".join(row)))
+            row_number += 1
+        print()
+
 
 def RunGame():
 
     username = UsernameInput.input_name()
     Welcome.welcome_screen(username)
+
+    size = 8
+
+    player_guess_board = SetBoard([[" "] * size for i in range(size)], size, username)
+
+    SetBoard.print_to_console(player_guess_board)
+
+    computer_hid_board = SetBoard([[" "] * size for i in range(size)], size, "Enemy Hidden")
+    computer_guess_board = SetBoard([[" "] * size for i in range(size)], size, "Enemy")
+
+    SetBoard.print_to_console(computer_guess_board)
+
+    #Print to visualize in test
+    SetBoard.print_to_console(computer_hid_board)
 
 RunGame()
