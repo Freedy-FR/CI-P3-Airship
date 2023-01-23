@@ -152,23 +152,21 @@ class SetAirship:
     def user_atk_input(self, size):
 
         try:   
-            x_row = input("Enter the row number: ")
+            x_row = input("Enter the Enemy row number to attack: ")
             while int(x_row) not in range(0, (size)):
                 print('Not a valid row Captain!')
-                x_row = input("Enter the row number: ")
+                x_row = input("Enter the Enemy row number to attack: ")
 
-            y_column = input("Enter the column number: ")
+            y_column = input("Enter the Enemy column number to attack: ")
             while int(y_column) not in range(0, (size)):
                 print('Not a valid column Captain!')
-                y_column = input("Enter the column number: ")
+                y_column = input("Enter the Enemy column number to attack: ")
             return int(x_row), int(y_column)
         except ValueError or KeyError or AttributeError:
             print("Invalid data, restarting the game...")
             sleep(3)
             clear()
             RunGame()
- 
-
 
 def RunGame():
 
@@ -194,23 +192,32 @@ def RunGame():
 
     # Set player ships a random
     SetAirship.create_airships(player_guess_board)
+    
+    turns_left = 10
+    while turns_left > 0:
 
-    # Print to visualize in test (computer hidden board)
-    # SetBoard.print_to_console(computer_hid_board)
+        # Print enemy hidden board with ships
+        SetBoard.print_to_console(computer_hid_board)
 
-    # Print enemy hidden board with ships
-    SetBoard.print_to_console(computer_hid_board)
+        # print computer guess_board
+        SetBoard.print_to_console(computer_guess_board)
 
-    # print computer guess_board
-    SetBoard.print_to_console(computer_guess_board)
+        # print player guess board
+        SetBoard.print_to_console(player_guess_board)
 
-    # print player guess board
-    SetBoard.print_to_console(player_guess_board)
+        # Get player input
+        player_guess_row, player_guess_column = SetAirship.user_atk_input(object, size)
+
+        print(player_guess_row, player_guess_column)
+
+        # check player guess on open board
+        while computer_guess_board.board[player_guess_row][player_guess_column] == "-" or computer_guess_board.board[player_guess_row][player_guess_column] == "X":
+            print("You guessed that one already")
+            sleep(2)
+            player_guess_row, player_guess_column = SetAirship.user_atk_input(object, size)
 
 
-    # Get player input
-    player_guess_row, player_guess_column = SetAirship.user_atk_input(object, size)
 
-    print(player_guess_row, player_guess_column)
+       
 
 RunGame()
