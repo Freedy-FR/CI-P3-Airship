@@ -139,6 +139,7 @@ class SetAirship:
     def __init__(self, board, size):
         self.board = board
         self.size = size
+        
 
     def create_airships(self):
         for i in range((self.size - 1)):
@@ -148,7 +149,26 @@ class SetAirship:
             self.board[self.x_row][self.y_column] = "X"
         return self.board
 
-    
+    def user_atk_input(self, size):
+
+        try:   
+            x_row = input("Enter the row number: ")
+            while int(x_row) not in range(0, (size)):
+                print('Not a valid row Captain!')
+                x_row = input("Enter the row number: ")
+
+            y_column = input("Enter the column number: ")
+            while int(y_column) not in range(0, (size)):
+                print('Not a valid column Captain!')
+                y_column = input("Enter the column number: ")
+            return int(x_row), int(y_column)
+        except ValueError or KeyError or AttributeError:
+            print("Invalid data, restarting the game...")
+            sleep(3)
+            clear()
+            RunGame()
+ 
+
 
 def RunGame():
 
@@ -186,5 +206,11 @@ def RunGame():
 
     # print player guess board
     SetBoard.print_to_console(player_guess_board)
+
+
+    # Get player input
+    player_guess_row, player_guess_column = SetAirship.user_atk_input(object, size)
+
+    print(player_guess_row, player_guess_column)
 
 RunGame()
