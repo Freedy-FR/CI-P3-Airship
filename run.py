@@ -27,19 +27,19 @@ class UsernameInput:
         name = input("Please tell me your name captain?\n")
         while True:
             if len(name) == 0:
-                sleep(0.5)
-                print("We are going to need your name for this adventure captain!")
+                sleep(2)
+                print("We are going to need your name for this Captain!")
                 name = input("Please tell me your name captain?\n")
                 clear()
             elif len(name) > 6:
-                sleep(0.5)
+                sleep(2)
                 print("Name is too big captain!")
                 name = input("Please insert a name between 1 and 6 letters\n")
                 clear()
             else:
                 clear()
                 print("That is a fair name captain!")
-                sleep(0.5)
+                sleep(2)
                 clear()
                 return name.capitalize()
 
@@ -65,7 +65,7 @@ class Welcome:
                                                   `------ ''')
 
         print(f" {player_name} Welcome to Airship battles!\n")
-        sleep(1)
+        sleep(5)
         clear()
 
 class TableSizeInput:
@@ -73,26 +73,26 @@ class TableSizeInput:
     """
     def table_size():        
         print("Please choose your battlefield grid size!")
-        print("4 x 4 Grid insert 4")
-        print("6 x 6 Grid insert 6")
-        print("8 x 8 Grid insert 8")
+        print("Insert 4: (4x4 Grid)-3 random ships")
+        print("Insert 6: (6x6 Grid)-5 random ships")
+        print("Insert 8: (8x8 Grid)-7 random ships\n")
         size = input("Please insert your grid size!\n")
         clear()
         while True:
             if len(size) == 0:
-                sleep(0.5)
+                sleep(2)
                 print("We are going to need your prefered battlefield grid!")
-                print("4 x 4 Grid insert 4")
-                print("6 x 6 Grid insert 6")
-                print("8 x 8 Grid insert 8")
+                print("Insert 4: (4x4 Grid)-3 random ships")
+                print("Insert 6: (6x6 Grid)-5 random ships")
+                print("Insert 8: (8x8 Grid)-7 random ships\n")
                 size = input("Please insert your grid size!\n")
                 clear()
             elif (size != "4" and size != "6" and size != "8"):
-                sleep(0.5)
+                sleep(2)
                 print("That is a invalid grid size!")
-                print("4 x 4 Grid insert 4")
-                print("6 x 6 Grid insert 6")
-                print("8 x 8 Grid insert 8")
+                print("Insert 4: (4x4 Grid)-3 random ships")
+                print("Insert 6: (6x6 Grid)-5 random ships")
+                print("Insert 8: (8x8 Grid)-7 random ships\n")
                 size = input("Please insert your grid size!\n")
                 clear()
             elif (size == "4" or size == "6" or size == "8"):
@@ -157,11 +157,13 @@ class SetAirship:
             x_row = input("Enter the Enemy row number to attack: ")
             while int(x_row) not in range(0, (size)):
                 print('Not a valid row Captain!')
+                sleep(2)
                 x_row = input("Enter the Enemy row number to attack: ")
 
             y_column = input("Enter the Enemy column number to attack: ")
             while int(y_column) not in range(0, (size)):
                 print('Not a valid column Captain!')
+                sleep(2)
                 y_column = input("Enter the Enemy column number to attack: ")
             return int(x_row), int(y_column)
         except ValueError or KeyError or AttributeError:
