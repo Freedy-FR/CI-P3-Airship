@@ -204,6 +204,7 @@ def RunGame():
 
         # print player guess board
         SetBoard.print_to_console(player_guess_board)
+        print(f"Turns left = {turns_left}")
 
         # Get player input
         player_guess_row, player_guess_column = SetAirship.user_atk_input(object, size)
@@ -212,12 +213,23 @@ def RunGame():
 
         # check player guess on open board
         while computer_guess_board.board[player_guess_row][player_guess_column] == "-" or computer_guess_board.board[player_guess_row][player_guess_column] == "X":
-            print("You guessed that one already")
+            print("Captain please choose another coordinates!")
             sleep(2)
             player_guess_row, player_guess_column = SetAirship.user_atk_input(object, size)
 
+        # Hit or miss on computer hidden board and append enemy open guess board
+        if computer_hid_board.board[player_guess_row][player_guess_column] == "X":
+            print("One of the Enemy Airships is falling from the sky!")
+            sleep(2)
+            computer_guess_board.board[player_guess_row][player_guess_column] = "X"
+            clear()
+        else:
+            print("You shot went into the void!")
+            sleep(2)
+            computer_guess_board.board[player_guess_row][player_guess_column] = "-"
+            clear()
 
 
-       
+    
 
 RunGame()
