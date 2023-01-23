@@ -1,31 +1,145 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Title
+Description..
 
-Welcome Freedy-FR,
+[]()
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
+![Mockup](docs/)
 
-## Reminders
+* [How to play](#How-to-play)
+* [User Experience (UX)](#User-Experience-(UX))
+  * [Initial Discussion](#Initial-Discussion)
+  * [User Stories](#User-Stories)
 
-* Your code must be placed in the `run.py` file
-* Your dependencies must be placed in the `requirements.txt` file
-* Do not edit any of the other files or your code may not deploy properly
+* [Design](#Design)
+  * [Colour Scheme](#Colour-Scheme)
+  * [Graphics](#Graphics)
+  * [Flowchart](#Flowchart)
+  
+* [Features](#Features)
+  * [Future features](#Future-features)
 
-## Creating the Heroku app
+* [Technologies Used](#Technologies-Used)
+  * [Languages Used](#Languages-Used)
+  * [Frameworks, Libraries & Programs Used](#Frameworks,-Libraries-&-Programs-Used)
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
+* [Testing](#Testing)
+  * [Solved Bugs](#Solved-Bugs)
+  * [Known Bugs](#Known-Bugs)
+  * [PEP8](#PEP8)
+  * [Manual Testing](#Manual-Testing)
 
-1. `heroku/python`
-2. `heroku/nodejs`
+* [Deployment](#Deployment)
+  * [Local Deployment](#Local-Deployment)
+  * [Remote Deployment](#Remote-Deployment)
+  * [Deploy project to Heroku](#Deploy-project-to-Heroku)
+  
+* [Credits](#Credits)
+  * [Code](#Code)
+  * [Content](#Content)
+  * [Acknowledgements](#Acknowledgements)
 
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
+- - -
 
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
+## How to play
 
-Connect your GitHub repository and deploy as normal.
+How to play
 
-## Constraints
+- - -
 
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
+## User Experience (UX)
 
------
-Happy coding!
+### Initial Discussion
+
+
+
+#### Key information:
+* 
+* 
+
+
+### User Stories
+
+#### Client Goals
+* 
+
+#### First Time Visitor Goals
+* 
+
+#### Returning Visitor Goals
+* 
+- - -
+
+## Design
+
+### Colour Scheme
+Color
+
+* 
+
+### Graphics
+* 
+
+### Flowchart
+Below is the initial design put together using
+
+
+
+- - -
+
+## Features
+
+### Future features
+* 
+
+- - -
+
+## Technologies Used
+
+### Languages Used
+Python
+
+### Frameworks, Libraries & Programs Used
+* 
+- - -
+
+## Testing 
+
+### Solved Bugs
+
+
+
+### Known Bugs
+
+
+### PEP8 
+
+
+### Manual Testing
+
+- - -
+
+## Deployment 
+
+### Local Deployment
+
+#### How to Clone
+1. 
+
+#### How to Fork
+1. 
+
+### Remote Deployment
+
+
+### Deploy project to Heroku
+1. 
+
+- - -
+
+## Credits
+
+### Code
+* 
+### Content
+* 
+### Acknowledgements 

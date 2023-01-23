@@ -217,9 +217,6 @@ def RunGame():
     turns_left = 10
     while turns_left > 0:
 
-        # Print enemy hidden board with ships
-        SetBoard.print_to_console(computer_hid_board)
-
         # print computer guess_board
         SetBoard.print_to_console(computer_guess_board)
 
