@@ -2,6 +2,8 @@ from os import system, name
 from time import sleep
 import random
 
+print()
+
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 
 # Code taken from stack overflow
@@ -167,6 +169,23 @@ class SetAirship:
             sleep(3)
             clear()
             RunGame()
+    
+    def enemy_sunk_ships(self):
+        sunk_ships = 0
+        for row in self.board:
+            for column in row:
+                if column == "X":
+                    sunk_ships += 1
+        return sunk_ships
+
+    def player_sunk_ships(self):
+        sunk_ships = 0
+        for row in self.board:
+            for column in row:
+                if column == "0":
+                    sunk_ships += 1
+        return sunk_ships
+
 
 def RunGame():
 
@@ -209,9 +228,7 @@ def RunGame():
         # Get player input
         player_guess_row, player_guess_column = SetAirship.user_atk_input(object, size)
 
-        print(player_guess_row, player_guess_column)
-
-        # check player guess on open board
+        # Check player guess on open board
         while computer_guess_board.board[player_guess_row][player_guess_column] == "-" or computer_guess_board.board[player_guess_row][player_guess_column] == "X":
             print("Captain please choose another coordinates!")
             sleep(2)
@@ -227,9 +244,53 @@ def RunGame():
             print("You shot went into the void!")
             sleep(2)
             computer_guess_board.board[player_guess_row][player_guess_column] = "-"
+            clear()        
+
+        # Check for win or loose for player and computer
+        if SetAirship.enemy_sunk_ships(computer_guess_board) == (size - 1):
             clear()
+            print("-----------------------------------")
+            print("You win!")
+            print(f"You hit all {size - 1} Airships!")
+            print("-----------------------------------")
+            sleep(10)
+            break
+        
+        # Hit or miss on player board and append 
+        computer_guess_row = random.randint(0, (size - 1))
+        computer_guess_column = random.randint(0, (size - 1))
+        while player_guess_board.board[computer_guess_row][computer_guess_column] == "-" or player_guess_board.board[computer_guess_row][computer_guess_column] == "O":
+            computer_guess_row, computer_guess_column = random.randint(0, (size - 1)), random.randint(0, (size - 1))
+        if player_guess_board.board[computer_guess_row][computer_guess_column] == "X":
+            print("One of YOUR Airships is falling from the sky!")
+            sleep(2)
+            player_guess_board.board[computer_guess_row][computer_guess_column] = "O"
+            clear()
+        else:
+            print("The Enemy shot went into the void!")
+            sleep(2)
+            player_guess_board.board[computer_guess_row][computer_guess_column] = "-"
+            clear()        
 
-
-    
+        if SetAirship.player_sunk_ships(player_guess_board) == (size - 1):
+            clear()
+            print("-----------------------------------")
+            print("You lose!")
+            print(f"The Enemy hit all your {size - 1} Airships!")
+            print("-----------------------------------")
+            sleep(10)
+            break
+        else:
+            turns_left -= 1
+            clear()
+            print(f"You have {turns_left} turns remaining!")
+            sleep(2)
+            if turns_left == 0:
+                clear()
+                SetBoard.print_to_console(computer_guess_board)
+                SetBoard.print_to_console(player_guess_board)
+                print("You run out of turns!")
+                sleep(10)
+                break        
 
 RunGame()
