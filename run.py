@@ -19,26 +19,62 @@ def clear():
         _ = system('clear')
 
 
+class TextCentering:
+    def __init__(self, width=80, fillchar=' '):
+        self.width = width
+        self.fillchar = fillchar
+    
+    def center_text(self, text):
+        centered_text = text.center(self.width, self.fillchar)
+        return centered_text
+
+
+
+airship ='''\x1b[91m
+       _..--=--..._
+    .-'            '-.  .-.
+   /.'              '.\/  |
+  |=-                -=| (
+   \'.               .'/\  |
+    '-.,_____ _____.-'  '-'
+         [_____]=8  \n'''
+
+
+
+# class Images:
+
+#     def airship():
+#         print('''\x1b[91m
+#        _..--=--..._
+#     .-'            '-.  .-.
+#    /.'              '.\/  |
+#   |=-                -=| (
+#    \'.               .'/\  |
+#     '-.,_____ _____.-'  '-'
+#          [_____]=8  \n''')
+
+
 class UsernameInput:
     """
     Ask for username input and validate name
     """
-    def input_name():
-        name = input("Please tell me your name captain?\n")
+    print(TextCentering().center_text(airship))
+    def input_name(): 
         while True:
+            name = input(TextCentering().center_text("Please tell me your name captain?\n"))   
             if len(name) == 0:
                 sleep(2)
-                print("We are going to need your name for this Captain!")
-                name = input("Please tell me your name captain?\n")
+                print(TextCentering().center_text("We are going to need your name for this Captain!"))
+                name = input(TextCentering().center_text("Please tell me your name captain?\n"))
                 clear()
             elif len(name) > 6:
                 sleep(2)
-                print("Name is too big captain!")
-                name = input("Please insert a name between 1 and 6 letters\n")
+                print(TextCentering().center_text("Name is too big captain!"))
+                name = input(TextCentering().center_text("Please insert a name between 1 and 6 letters\n"))
                 clear()
             else:
                 clear()
-                print("That is a fair name captain!")
+                print(TextCentering().center_text("That is a fair name captain!"))
                 sleep(2)
                 clear()
                 return name.capitalize()
@@ -49,21 +85,22 @@ class Welcome:
         """
         Show welcome screen and message to the user
         """
-        print('''                      . ___
-                    __,' __`.                _..----....____
-        __...--.'``;.   ,.   ;``--..__     .'    ,-._    _.-'
-  _..-''-------'   `'   `'   `'     O ``-''._   ,;') _,'
-,'________________                          \`-._`-','
- `._              ```````````------...___   '-.._'-:
-    ```--.._      ,.                     ````--...__\-.
-            `.--. `-`                       ____    |  |`
-              `. `.                       ,'`````.  ;  ;`
-                `._`.        __________   `.      \'__/`
-                   `-:._____/______/___/____`.     \  `
-                               |       `._    `.    /
-                               `._________`-.   `.   `.___
-                                                  `------ ''')
+#         print('''                      . ___
+#                     __,' __`.                _..----....____
+#         __...--.'``;.   ,.   ;``--..__     .'    ,-._    _.-'
+#   _..-''-------'   `'   `'   `'     O ``-''._   ,;') _,'
+# ,'________________                          \`-._`-','
+#  `._              ```````````------...___   '-.._'-:
+#     ```--.._      ,.                     ````--...__\-.
+#             `.--. `-`                       ____    |  |`
+#               `. `.                       ,'`````.  ;  ;`
+#                 `._`.        __________   `.      \'__/`
+#                    `-:._____/______/___/____`.     \  `
+#                                |       `._    `.    /
+#                                `._________`-.   `.   `.___
+#                                                   `------ ''')
 
+        Images.airship()
         print(f" {player_name} Welcome to Airship battles!\n")
         sleep(5)
         clear()
