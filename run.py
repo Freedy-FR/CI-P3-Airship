@@ -91,15 +91,23 @@ class Board:
 class Game:
     def __init__(self):
         self.player_name = ""
-    
+         
     def input_name(self):
         while True:
             clear()
             Images.airship()
             name = ""
-            alert = TextCentering().center_text("Please insert a name between 1 and 6 letters\n")
-            print(TextCentering().center_text("We are going to need your name on this adventure Captain!"))
-            name = input(TextCentering().center_text("Please tell me your name?\n")).strip()
+            alert = TextCentering().center_text(
+                "Please insert a name between 1 and 6 letters\n"
+                )
+            print(TextCentering().center_text(
+                "We are going to need your name on this adventure Captain!"
+                )
+                )
+            name = input(TextCentering().center_text(
+                "Please tell me your name?\n"
+                )
+                ).strip()
             if not 0 < len(name) <= 6:
                 clear()
                 Images.airship()
@@ -108,7 +116,10 @@ class Game:
             else:
                 clear()
                 Images.airship()
-                print(TextCentering().center_text("That is a fair name captain!"))
+                print(TextCentering().center_text(
+                    "That is a fair name captain!"
+                    )
+                    )
                 sleep(2)
                 clear()
                 self.player_name = name.capitalize()
