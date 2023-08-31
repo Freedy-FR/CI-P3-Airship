@@ -83,7 +83,7 @@ class Board:
             while self.board[x_row][y_column] == "X":
                 # If occupied, generate new random coordinates
                 x_row, y_column = random.randint(0, (self.size - 1)), random.randint(0, (self.size - 1))
-            
+
             # Place airship at the random spot
             self.board[x_row][y_column] = "X"
 
@@ -92,6 +92,7 @@ class Game:
     """ Main class to manage the game logic."""    
     def __init__(self):
         self.player_name = ""
+        self.size = 0
 
     def input_name(self):
         """Ask for the player's name and validate it."""
@@ -114,7 +115,7 @@ class Game:
                 "Please tell me your name?\n"
                 )
                 ).strip()
-            
+
             # Validate the user input
             if not 0 < len(name) <= 6:
                 clear()
@@ -146,12 +147,15 @@ class Game:
         clear()
 
     def table_size(self):
-        
+        """Ask for the size of the game board."""
         while True:
+            # Store alert message to the user
             alert_table = TextCentering().center_text(
                 "That is an invalid grid size! Insert 4, 6, 8 !"
                     )
             Images.airship()
+
+            # Print the option to the user
             print(
                 TextCentering().center_text(
                     "Please choose your battlefield grid size!\n"
@@ -172,12 +176,16 @@ class Game:
                     "Insert 8: (8x8 Grid)-7 random ships\n"
                     )
                     )
+
+            # Ask for user input
             size = input(
                 TextCentering().center_text(
                     "Please insert your grid size!\n"
                     )
                     )
             clear()
+
+            # Validate table options
             if size not in ["4", "6", "8"]:
                 Images.airship()
                 print(alert_table)
@@ -192,7 +200,7 @@ class Game:
                         )
                 sleep(2)
                 self.size = int(size)
-                break       
+                break      
 
 
 class SetAirship:
