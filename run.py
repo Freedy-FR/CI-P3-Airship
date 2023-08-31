@@ -20,18 +20,22 @@ def clear():
 
 
 class TextCentering:
+    """Class for centering text within a specified width."""
     def __init__(self, width=80, fillchar=' '):
         self.width = width
         self.fillchar = fillchar
     
     def center_text(self, text):
+        """Center the given text within the specified width."""
         centered_text = text.center(self.width, self.fillchar)
         return centered_text
 
 
 class Images:
+    """Class for printing ASCII art images."""
     @staticmethod
     def airship():
+        """Print the airship image."""
         print('''\x1b[91m
                                Airship Battles 
                                 _..--=--..._
