@@ -29,6 +29,20 @@ class TextCentering:
         return centered_text
 
 
+class Images:
+    @staticmethod
+    def airship():
+        print('''\x1b[91m
+                               Airship Battles 
+                                _..--=--..._
+                             .-'            '-.  .-.
+                            /.'              '.\/  |
+                           |=-                -=| (
+                            \'.               .'/\  |
+                             '-.,_____ _____.-'  '-'
+                                   [_____]=8  \033[0m\n
+    ''')
+
 
 class UsernameInput:
     """
