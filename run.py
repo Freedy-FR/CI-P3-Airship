@@ -89,17 +89,23 @@ class Board:
 
 
 class Game:
+    """ Main class to manage the game logic."""    
     def __init__(self):
         self.player_name = ""
-         
+
     def input_name(self):
+        """Ask for the player's name and validate it."""
         while True:
             clear()
             Images.airship()
             name = ""
+
+            # Store alert message to the user
             alert = TextCentering().center_text(
                 "Please insert a name between 1 and 6 letters\n"
                 )
+
+            # Print and ask for user input
             print(TextCentering().center_text(
                 "We are going to need your name on this adventure Captain!"
                 )
@@ -108,6 +114,8 @@ class Game:
                 "Please tell me your name?\n"
                 )
                 ).strip()
+            
+            # Validate the user input
             if not 0 < len(name) <= 6:
                 clear()
                 Images.airship()
