@@ -120,7 +120,7 @@ class Game:
                 clear()
                 Images.airship()
                 print(alert)
-                sleep(2)
+                sleep(3)
             else:
                 clear()
                 Images.airship()
@@ -128,34 +128,19 @@ class Game:
                     "That is a fair name captain!"
                     )
                     )
-                sleep(2)
+                sleep(3)
                 clear()
                 self.player_name = name.capitalize()
                 break
-
-
-class Welcome: 
-    def welcome_screen(player_name):
-        """
-        Show welcome screen and message to the user
-        """
-        print('''                      . ___
-                    __,' __`.                _..----....____
-        __...--.'``;.   ,.   ;``--..__     .'    ,-._    _.-'
-  _..-''-------'   `'   `'   `'     O ``-''._   ,;') _,'
-,'________________                          \`-._`-','
- `._              ```````````------...___   '-.._'-:
-    ```--.._      ,.                     ````--...__\-.
-            `.--. `-`                       ____    |  |`
-              `. `.                       ,'`````.  ;  ;`
-                `._`.        __________   `.      \'__/`
-                   `-:._____/______/___/____`.     \  `
-                               |       `._    `.    /
-                               `._________`-.   `.   `.___
-                                                  `------ ''')
-
-        print(f" {player_name} Welcome to Airship battles!\n")
-        sleep(5)
+    
+    def welcome_screen(self):
+        clear()
+        Images.airship()
+        print(TextCentering().center_text(
+            f" {self.player_name} Welcome to Airship battles!\n"
+            )
+            )
+        sleep(3)
         clear()
 
 class TableSizeInput:
