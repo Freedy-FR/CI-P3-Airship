@@ -88,29 +88,31 @@ class Board:
             self.board[x_row][y_column] = "X"
 
 
-class UsernameInput:
-    """
-    Ask for username input and validate name
-    """
-    def input_name():
-        name = input("Please tell me your name captain?\n")
+class Game:
+    def __init__(self):
+        self.player_name = ""
+    
+    def input_name(self):
         while True:
-            if len(name) == 0:
-                sleep(2)
-                print("We are going to need your name for this Captain!")
-                name = input("Please tell me your name captain?\n")
+            clear()
+            Images.airship()
+            name = ""
+            alert = TextCentering().center_text("Please insert a name between 1 and 6 letters\n")
+            print(TextCentering().center_text("We are going to need your name on this adventure Captain!"))
+            name = input(TextCentering().center_text("Please tell me your name?\n")).strip()
+            if not 0 < len(name) <= 6:
                 clear()
-            elif len(name) > 6:
+                Images.airship()
+                print(alert)
                 sleep(2)
-                print("Name is too big captain!")
-                name = input("Please insert a name between 1 and 6 letters\n")
-                clear()
             else:
                 clear()
-                print("That is a fair name captain!")
+                Images.airship()
+                print(TextCentering().center_text("That is a fair name captain!"))
                 sleep(2)
                 clear()
-                return name.capitalize()
+                self.player_name = name.capitalize()
+                break
 
 
 class Welcome: 
