@@ -93,6 +93,10 @@ class Game:
     def __init__(self):
         self.player_name = ""
         self.size = 0
+        self.player_board = None
+        self.computer_hid_board = None
+        self.computer_guess_board = None
+        self.turns_left = 10
 
     def input_name(self):
         """Ask for the player's name and validate it."""
@@ -202,57 +206,18 @@ class Game:
                 self.size = int(size)
                 break      
 
+    def run_game(self):
+        while self.turns_left > 0:
+            self.computer_guess_board.print_to_console()
+            self.computer_hid_board.print_to_console()
+            self.player_board.print_to_console()
 
-class SetAirship:
-    def __init__(self, board, size):
-        self.board = board
-        self.size = size
-        
+            print(TextCentering().center_text(
+                f"Turns left = {self.turns_left}"
+                )
+                )
 
-    def create_airships(self):
-        for i in range((self.size - 1)):
-            self.x_row, self.y_column = random.randint(0, (self.size - 1)), random.randint(0, (self.size - 1))
-            while self.board[self.x_row][self.y_column] == "X":
-                self.x_row, self.y_column = random.randint(0, (self.size - 1)), random.randint(0, (self.size - 1))
-            self.board[self.x_row][self.y_column] = "X"
-        return self.board
 
-    def user_atk_input(self, size):
-
-        try:   
-            x_row = input("Enter the Enemy row number to attack: ")
-            while int(x_row) not in range(0, (size)):
-                print('Not a valid row Captain!')
-                sleep(2)
-                x_row = input("Enter the Enemy row number to attack: ")
-
-            y_column = input("Enter the Enemy column number to attack: ")
-            while int(y_column) not in range(0, (size)):
-                print('Not a valid column Captain!')
-                sleep(2)
-                y_column = input("Enter the Enemy column number to attack: ")
-            return int(x_row), int(y_column)
-        except ValueError or KeyError or AttributeError:
-            print("Invalid data, restarting the game...")
-            sleep(3)
-            clear()
-            RunGame()
-    
-    def enemy_sunk_ships(self):
-        sunk_ships = 0
-        for row in self.board:
-            for column in row:
-                if column == "X":
-                    sunk_ships += 1
-        return sunk_ships
-
-    def player_sunk_ships(self):
-        sunk_ships = 0
-        for row in self.board:
-            for column in row:
-                if column == "0":
-                    sunk_ships += 1
-        return sunk_ships
 
 
 def RunGame():
