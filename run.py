@@ -204,7 +204,28 @@ class Game:
                         )
                 sleep(2)
                 self.size = int(size)
-                break      
+                break
+    
+    def get_user_atk_input(self):
+        try:
+            x_row = input(TextCentering().center_text("Enter the Enemy row number to attack: "))
+            while int(x_row) not in range(0, self.size):
+                print(TextCentering().center_text('Not a valid row Captain!'))
+                sleep(2)
+                x_row = input(TextCentering().center_text("Enter the Enemy row number to attack: "))
+
+            y_column = input(TextCentering().center_text("Enter the Enemy column number to attack: "))
+            while int(y_column) not in range(0, self.size):
+                print(TextCentering().center_text('Not a valid column Captain!'))
+                sleep(2)
+                y_column = input(TextCentering().center_text("Enter the Enemy column number to attack: "))
+            return int(x_row), int(y_column)
+        except (ValueError, KeyError, AttributeError):
+            print(TextCentering().center_text(f"Invalid input, please insert a number from 0 to {self.size - 1}"))
+            sleep(3)
+            clear()
+            self.run_game()
+
 
     def run_game(self):
         """Run the main game loop."""
@@ -219,7 +240,6 @@ class Game:
                 f"Turns left = {self.turns_left}"
                 )
                 )
-
 
 
 def RunGame():
