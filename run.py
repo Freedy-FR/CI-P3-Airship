@@ -38,11 +38,11 @@ class Board:
         print("---{:^10}--- ".format(self.title))
         heading = [" "] + [str(i) for i in range(self.size)]
         separator = ["+"] * self.size
-        print("" + " ".join(heading))
-        print("  " + " ".join(separator))
+        print(" " + " ".join(heading))
+        print("   " + " ".join(separator))
         
         for i, row in enumerate(self.board):
-            print("{}|{}|".format(i, "|".join(row)))
+            print("-{}|{}|".format(i, "|".join(row)))
         print()
         
     def create_airships(self):
@@ -143,7 +143,7 @@ class Game:
     def run_game(self):
         while self.turns_left > 0:
             self.computer_guess_board.print_to_console()
-            # self.computer_hid_board.print_to_console()
+            self.computer_hid_board.print_to_console()
             self.player_board.print_to_console()
             print(TextCentering().center_text(f"Turns left = {self.turns_left}"))
 

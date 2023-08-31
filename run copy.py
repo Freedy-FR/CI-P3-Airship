@@ -114,7 +114,6 @@ class TableSizeInput:
                 sleep(2)
                 clear()
                 return int(size)
-        
 
 
 class SetBoard:
@@ -127,28 +126,46 @@ class SetBoard:
         self.username = username
         self.size = size
     
+    # def print_to_console(self):
+
+    #     # Create an username title to the board and center username
+    #     print("---{:^10}--- ".format(self.username))
+
+    #     # Create the heading based on the size given
+    #     heading = []
+    #     separator = []
+    #     for i in range(self.size):
+    #         heading.append(f"{i}")
+    #         separator.append(f"|")
+    #     print("  " + " ".join(heading))
+    #     print("  " + " ".join(separator))
+
+
+    #     # Create an instance of the board
+    #     row_number = 0
+    #     for row in self.board:
+    #         # print("%d|%s|" % (row_number, "|".join(row)))
+    #         print("{}|{}|".format(row_number, "|".join(row)))
+    #         row_number += 1
+    #     print()
+
+    
+
     def print_to_console(self):
+    # Create an username title to the board and center username
+    print("---{:^10}--- ".format(self.username))
 
-        # Create an username title to the board and center username
-        print("---{:^10}--- ".format(self.username))
+    # Create the heading based on the size given
+    heading = "  " + " ".join(str(i) for i in range(self.size))
+    separator = "  " + " ".join("|" for _ in range(self.size))
+    print(heading)
+    print(separator)
 
-        # Create the heading based on the size given
-        heading = []
-        separator = []
-        for i in range(self.size):
-            heading.append(f"{i}")
-            separator.append(f"|")
-        print("  " + " ".join(heading))
-        print("  " + " ".join(separator))
-
-
-        # Create an instance of the board
-        row_number = 0
-        for row in self.board:
-            # print("%d|%s|" % (row_number, "|".join(row)))
-            print("{}|{}|".format(row_number, "|".join(row)))
-            row_number += 1
-        print()
+    # Print each row using f-strings
+    for row_number, row in enumerate(self.board):
+        row_string = "|".join(row)
+        print(f"{row_number}|{row_string}|")
+    print()
 
 class SetAirship:
     def __init__(self, board, size):
@@ -306,3 +323,6 @@ def RunGame():
                 break        
 
 RunGame()
+
+
+
