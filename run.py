@@ -207,25 +207,55 @@ class Game:
                 break
     
     def get_user_atk_input(self):
+        """Get and validate user's attack coordinates."""
         try:
-            x_row = input(TextCentering().center_text("Enter the Enemy row number to attack: "))
-            while int(x_row) not in range(0, self.size):
-                print(TextCentering().center_text('Not a valid row Captain!'))
-                sleep(2)
-                x_row = input(TextCentering().center_text("Enter the Enemy row number to attack: "))
+            # Ask for row user input
+            x_row = input(TextCentering().center_text(
+                "Enter the Enemy row number to attack: "
+                )
+                )
 
-            y_column = input(TextCentering().center_text("Enter the Enemy column number to attack: "))
-            while int(y_column) not in range(0, self.size):
-                print(TextCentering().center_text('Not a valid column Captain!'))
+            # Validate the row input
+            while int(x_row) not in range(0, self.size):
+                print(TextCentering().center_text(
+                    "Not a valid row Captain!"
+                    )
+                    )
                 sleep(2)
-                y_column = input(TextCentering().center_text("Enter the Enemy column number to attack: "))
+                x_row = input(TextCentering().center_text(
+                    "Enter the Enemy row number to attack: "
+                    )
+                    )
+            
+            # Ask for column user input
+            y_column = input(TextCentering().center_text(
+                "Enter the Enemy column number to attack: "
+                )
+                )
+
+            # Validate the column input
+            while int(y_column) not in range(0, self.size):
+                print(TextCentering().center_text(
+                    "Not a valid column Captain!"
+                    )
+                    )
+                sleep(2)
+                y_column = input(TextCentering().center_text(
+                    "Enter the Enemy column number to attack: "
+                    )
+                    )
+            # Return the row and column
             return int(x_row), int(y_column)
+
         except (ValueError, KeyError, AttributeError):
-            print(TextCentering().center_text(f"Invalid input, please insert a number from 0 to {self.size - 1}"))
+            # Display a helper message if invalid input
+            print(TextCentering().center_text(
+                f"Invalid input, please insert numbers 0 to {self.size - 1}"
+                )
+                )
             sleep(3)
             clear()
             self.run_game()
-
 
     def run_game(self):
         """Run the main game loop."""
