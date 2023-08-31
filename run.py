@@ -19,6 +19,17 @@ def clear():
         _ = system('clear')
 
 
+class TextCentering:
+    def __init__(self, width=80, fillchar=' '):
+        self.width = width
+        self.fillchar = fillchar
+    
+    def center_text(self, text):
+        centered_text = text.center(self.width, self.fillchar)
+        return centered_text
+
+
+
 class UsernameInput:
     """
     Ask for username input and validate name
