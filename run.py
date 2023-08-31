@@ -2,22 +2,6 @@ from os import system, name
 from time import sleep
 import random
 
-print()
-
-# Write your code to expect a terminal of 80 characters wide and 24 rows high
-
-# Code taken from stack overflow
-def clear():
-    """
-    Clear the console screen
-    """
-    # for windows
-    if name == 'nt':
-        _ = system('cls')
-    # for mac and linux(here, os.name is 'posix')
-    else:
-        _ = system('clear')
-
 
 class TextCentering:
     def __init__(self, width=80, fillchar=' '):
@@ -29,304 +13,255 @@ class TextCentering:
         return centered_text
 
 
-
-airship ='''\x1b[91m
-       _..--=--..._
-    .-'            '-.  .-.
-   /.'              '.\/  |
-  |=-                -=| (
-   \'.               .'/\  |
-    '-.,_____ _____.-'  '-'
-         [_____]=8  \n'''
-
-
-
-# class Images:
-
-#     def airship():
-#         print('''\x1b[91m
-#        _..--=--..._
-#     .-'            '-.  .-.
-#    /.'              '.\/  |
-#   |=-                -=| (
-#    \'.               .'/\  |
-#     '-.,_____ _____.-'  '-'
-#          [_____]=8  \n''')
+class Images:
+    @staticmethod
+    def airship():
+        print('''\x1b[91m
+                               Airship Battles 
+                                _..--=--..._
+                             .-'            '-.  .-.
+                            /.'              '.\/  |
+                           |=-                -=| (
+                            \'.               .'/\  |
+                             '-.,_____ _____.-'  '-'
+                                   [_____]=8  \033[0m\n
+    ''')
 
 
-class UsernameInput:
-    """
-    Ask for username input and validate name
-    """
-    print(TextCentering().center_text(airship))
-    def input_name(): 
+class Board:
+    def __init__(self, size, title):
+        self.size = size
+        self.title = title
+        self.board = [[" "] * size for _ in range(size)]
+
+    def print_to_console(self):
+        print("---{:^10}--- ".format(self.title))
+        heading = [" "] + [str(i) for i in range(self.size)]
+        separator = ["+"] * self.size
+        print("" + " ".join(heading))
+        print("  " + " ".join(separator))
+        
+        for i, row in enumerate(self.board):
+            print("{}|{}|".format(i, "|".join(row)))
+        print()
+        
+    def create_airships(self):
+        for i in range((self.size - 1)):
+            x_row, y_column = random.randint(0, (self.size - 1)), random.randint(0, (self.size - 1))
+            while self.board[x_row][y_column] == "X":
+                x_row, y_column = random.randint(0, (self.size - 1)), random.randint(0, (self.size - 1))
+            self.board[x_row][y_column] = "X"
+
+
+class Game:
+    def __init__(self):
+        self.player_name = ""
+        self.size = 0
+        self.player_board = None
+        self.computer_hid_board = None
+        self.computer_guess_board = None
+        self.turns_left = 10
+
+    def input_name(self):
         while True:
-            name = input(TextCentering().center_text("Please tell me your name captain?\n"))   
-            if len(name) == 0:
-                sleep(2)
-                print(TextCentering().center_text("We are going to need your name for this Captain!"))
-                name = input(TextCentering().center_text("Please tell me your name captain?\n"))
+            clear()
+            Images.airship()
+            name = ""
+            alert = TextCentering().center_text("Please insert a name between 1 and 6 letters\n")
+            print(TextCentering().center_text("We are going to need your name on this adventure Captain!"))
+            name = input(TextCentering().center_text("Please tell me your name?\n")).strip()
+            if not 0 < len(name) <= 6:
                 clear()
-            elif len(name) > 6:
+                Images.airship()
+                print(alert)
                 sleep(2)
-                print(TextCentering().center_text("Name is too big captain!"))
-                name = input(TextCentering().center_text("Please insert a name between 1 and 6 letters\n"))
-                clear()
             else:
                 clear()
+                Images.airship()
                 print(TextCentering().center_text("That is a fair name captain!"))
                 sleep(2)
                 clear()
-                return name.capitalize()
+                self.player_name = name.capitalize()
+                break
 
-
-class Welcome: 
-    def welcome_screen(player_name):
-        """
-        Show welcome screen and message to the user
-        """
-#         print('''                      . ___
-#                     __,' __`.                _..----....____
-#         __...--.'``;.   ,.   ;``--..__     .'    ,-._    _.-'
-#   _..-''-------'   `'   `'   `'     O ``-''._   ,;') _,'
-# ,'________________                          \`-._`-','
-#  `._              ```````````------...___   '-.._'-:
-#     ```--.._      ,.                     ````--...__\-.
-#             `.--. `-`                       ____    |  |`
-#               `. `.                       ,'`````.  ;  ;`
-#                 `._`.        __________   `.      \'__/`
-#                    `-:._____/______/___/____`.     \  `
-#                                |       `._    `.    /
-#                                `._________`-.   `.   `.___
-#                                                   `------ ''')
-
+    def welcome_screen(self):
+        clear()
         Images.airship()
-        print(f" {player_name} Welcome to Airship battles!\n")
-        sleep(5)
+        print(TextCentering().center_text(f" {self.player_name} Welcome to Airship battles!\n"))
+        sleep(2)
         clear()
 
-class TableSizeInput:
-    """
-    """
-    def table_size():        
-        print("Please choose your battlefield grid size!")
-        print("Insert 4: (4x4 Grid)-3 random ships")
-        print("Insert 6: (6x6 Grid)-5 random ships")
-        print("Insert 8: (8x8 Grid)-7 random ships\n")
-        size = input("Please insert your grid size!\n")
-        clear()
+    def table_size(self):
+        
         while True:
-            if len(size) == 0:
+            alert_table = TextCentering().center_text(
+                "That is an invalid grid size! Insert 4, 6, 8 !"
+                    )
+            Images.airship()
+            print(
+                TextCentering().center_text(
+                    "Please choose your battlefield grid size!\n"
+                    )
+                    )
+            print(
+                TextCentering().center_text(
+                    "Insert 4: (4x4 Grid)-3 random ships"
+                    )
+                    )
+            print(
+                TextCentering().center_text(
+                    "Insert 6: (6x6 Grid)-5 random ships"
+                    )
+                    )
+            print(
+                TextCentering().center_text(
+                    "Insert 8: (8x8 Grid)-7 random ships\n"
+                    )
+                    )
+            size = input(
+                TextCentering().center_text(
+                    "Please insert your grid size!\n"
+                    )
+                    )
+            clear()
+            if size not in ["4", "6", "8"]:
+                Images.airship()
+                print(alert_table)
                 sleep(2)
-                print("We are going to need your prefered battlefield grid!")
-                print("Insert 4: (4x4 Grid)-3 random ships")
-                print("Insert 6: (6x6 Grid)-5 random ships")
-                print("Insert 8: (8x8 Grid)-7 random ships\n")
-                size = input("Please insert your grid size!\n")
                 clear()
-            elif (size != "4" and size != "6" and size != "8"):
+            else:
+                Images.airship()
+                print(
+                    TextCentering().center_text(
+                        "That is a fair grid size captain!"
+                        )
+                        )
                 sleep(2)
-                print("That is a invalid grid size!")
-                print("Insert 4: (4x4 Grid)-3 random ships")
-                print("Insert 6: (6x6 Grid)-5 random ships")
-                print("Insert 8: (8x8 Grid)-7 random ships\n")
-                size = input("Please insert your grid size!\n")
-                clear()
-            elif (size == "4" or size == "6" or size == "8"):
-                clear()
-                print("That is a fair grid size captain!")
+                self.size = int(size)
+                break
+
+    def run_game(self):
+        while self.turns_left > 0:
+            self.computer_guess_board.print_to_console()
+            # self.computer_hid_board.print_to_console()
+            self.player_board.print_to_console()
+            print(TextCentering().center_text(f"Turns left = {self.turns_left}"))
+
+            # Get player input
+            player_guess_row, player_guess_column = self.get_user_atk_input()
+
+            # Check player guess on open board
+            while self.computer_guess_board.board[player_guess_row][player_guess_column] in ["-", "X"]:
+                print(TextCentering().center_text("Captain please choose another coordinates!"))
                 sleep(2)
+                player_guess_row, player_guess_column = self.get_user_atk_input()
+
+            if self.computer_hid_board.board[player_guess_row][player_guess_column] == "X":
+                print(TextCentering().center_text("One of the Enemy Airships is falling from the sky!"))
+                sleep(2)
+                self.computer_guess_board.board[player_guess_row][player_guess_column] = "X"
                 clear()
-                return int(size)
-        
+            else:
+                print(TextCentering().center_text("You shot went into the void!"))
+                sleep(2)
+                self.computer_guess_board.board[player_guess_row][player_guess_column] = "-"
+                clear()
+                self.turns_left -= 1
 
+            if self.enemy_sunk_ships(self.computer_guess_board) == (self.size - 1):
+                clear()
+                print(TextCentering().center_text("-----------------------------------"))
+                print(TextCentering().center_text("You win!"))
+                print(TextCentering().center_text(f"You hit all {self.size - 1} Airships!"))
+                print(TextCentering().center_text("-----------------------------------"))
+                sleep(10)
+                break
 
-class SetBoard:
-    """
-    Create a board instance and print to the console if called
-    """
+            computer_guess_row = random.randint(0, (self.size - 1))
+            computer_guess_column = random.randint(0, (self.size - 1))
+            while self.player_board.board[computer_guess_row][computer_guess_column] in ["-", "O"]:
+                computer_guess_row = random.randint(0, (self.size - 1))
+                computer_guess_column = random.randint(0, (self.size - 1))
+            
+            if self.player_board.board[computer_guess_row][computer_guess_column] == "X":
+                print(TextCentering().center_text("One of YOUR Airships is falling from the sky!"))
+                sleep(2)
+                self.player_board.board[computer_guess_row][computer_guess_column] = "O"
+                clear()
+            else:
+                print(TextCentering().center_text("The Enemy shot went into the void!"))
+                sleep(2)
+                self.player_board.board[computer_guess_row][computer_guess_column] = "-"
+                clear()
 
-    def __init__(self, board, size, username):
-        self.board = board
-        self.username = username
-        self.size = size
-    
-    def print_to_console(self):
+            if self.player_sunk_ships(self.player_board) == (self.size - 1):
+                clear()
+                print(TextCentering().center_text("-----------------------------------"))
+                print(TextCentering().center_text("You lose!"))
+                print(TextCentering().center_text(f"The Enemy hit all your {self.size - 1} Airships!"))
+                print(TextCentering().center_text("-----------------------------------"))
+                sleep(10)
+                break
+            else:
+                clear()
+                print(TextCentering().center_text(f"You have {self.turns_left} turns remaining!"))
+                sleep(2)
+                if self.turns_left == 0:
+                    clear()
+                    self.computer_guess_board.print_to_console()
+                    self.player_board.print_to_console()
+                    print(TextCentering().center_text("You lose!!"))
+                    print(TextCentering().center_text("You run out of turns!"))
+                    sleep(10)
+                    break
 
-        #Create an username title to the board and center username
-        print("---{:^10}--- ".format(self.username))
+    @staticmethod
+    def enemy_sunk_ships(board):
+        sunk_ships = sum(row.count("X") for row in board.board)
+        return sunk_ships
 
-        #Create the heading based on the size given
-        heading = []
-        separator = []
-        for i in range(self.size):
-            heading.append(f"{i}")
-            separator.append(f"|")
-        print("  " + " ".join(heading))
-        print("  " + " ".join(separator))
+    @staticmethod
+    def player_sunk_ships(board):
+        sunk_ships = sum(row.count("0") for row in board.board)
+        return sunk_ships
 
-
-        #Create an instance of the board
-        row_number = 0
-        for row in self.board:
-            # print("%d|%s|" % (row_number, "|".join(row)))
-            print("{}|{}|".format(row_number, "|".join(row)))
-            row_number += 1
-        print()
-
-class SetAirship:
-    def __init__(self, board, size):
-        self.board = board
-        self.size = size
-        
-
-    def create_airships(self):
-        for i in range((self.size - 1)):
-            self.x_row, self.y_column = random.randint(0, (self.size - 1)), random.randint(0, (self.size - 1))
-            while self.board[self.x_row][self.y_column] == "X":
-                self.x_row, self.y_column = random.randint(0, (self.size - 1)), random.randint(0, (self.size - 1))
-            self.board[self.x_row][self.y_column] = "X"
-        return self.board
-
-    def user_atk_input(self, size):
-
+    def get_user_atk_input(self):
         try:   
-            x_row = input("Enter the Enemy row number to attack: ")
-            while int(x_row) not in range(0, (size)):
-                print('Not a valid row Captain!')
+            x_row = input(TextCentering().center_text("Enter the Enemy row number to attack: "))
+            while int(x_row) not in range(0, self.size):
+                print(TextCentering().center_text('Not a valid row Captain!'))
                 sleep(2)
-                x_row = input("Enter the Enemy row number to attack: ")
+                x_row = input(TextCentering().center_text("Enter the Enemy row number to attack: "))
 
-            y_column = input("Enter the Enemy column number to attack: ")
-            while int(y_column) not in range(0, (size)):
-                print('Not a valid column Captain!')
+            y_column = input(TextCentering().center_text("Enter the Enemy column number to attack: "))
+            while int(y_column) not in range(0, self.size):
+                print(TextCentering().center_text('Not a valid column Captain!'))
                 sleep(2)
-                y_column = input("Enter the Enemy column number to attack: ")
+                y_column = input(TextCentering().center_text("Enter the Enemy column number to attack: "))
             return int(x_row), int(y_column)
         except ValueError or KeyError or AttributeError:
-            print("Invalid data, restarting the game...")
+            print(TextCentering().center_text(f"Invalid input, please insert a number from 0 to {self.size - 1}"))
             sleep(3)
             clear()
-            RunGame()
-    
-    def enemy_sunk_ships(self):
-        sunk_ships = 0
-        for row in self.board:
-            for column in row:
-                if column == "X":
-                    sunk_ships += 1
-        return sunk_ships
+            self.run_game()
 
-    def player_sunk_ships(self):
-        sunk_ships = 0
-        for row in self.board:
-            for column in row:
-                if column == "0":
-                    sunk_ships += 1
-        return sunk_ships
+def clear():
+    if name == 'nt':
+        _ = system('cls')
+    else:
+        _ = system('clear')
 
+if __name__ == "__main__":
+    game = Game()
+    game.input_name()
+    game.welcome_screen()
+    game.table_size()
 
-def RunGame():
+    game.player_board = Board(game.size, game.player_name)
+    game.computer_hid_board = Board(game.size, "Enemy Hidden")
+    game.computer_guess_board = Board(game.size, "Enemy")
 
-    # get username input
-    username = UsernameInput.input_name()
-    
-    # display  welcomescreen
-    Welcome.welcome_screen(username)
-    
-    # get table grid size
-    size = TableSizeInput.table_size()
-    
-    # set player guess board
-    player_guess_board = SetBoard([[" "] * size for i in range(size)], size, username)
+    Board.create_airships(game.computer_hid_board)
+    Board.create_airships(game.player_board)
 
-    # set enemy hidden board
-    computer_hid_board = SetBoard([[" "] * size for i in range(size)], size, "Enemy Hidden")
-    # set computer guess board
-    computer_guess_board = SetBoard([[" "] * size for i in range(size)], size, "Enemy")
-
-    # Set enemy ships at random
-    SetAirship.create_airships(computer_hid_board)
-
-    # Set player ships a random
-    SetAirship.create_airships(player_guess_board)
-    
-    turns_left = 10
-    while turns_left > 0:
-
-        # print computer guess_board
-        SetBoard.print_to_console(computer_guess_board)
-
-        # print player guess board
-        SetBoard.print_to_console(player_guess_board)
-        print(f"Turns left = {turns_left}")
-
-        # Get player input
-        player_guess_row, player_guess_column = SetAirship.user_atk_input(object, size)
-
-        # Check player guess on open board
-        while computer_guess_board.board[player_guess_row][player_guess_column] == "-" or computer_guess_board.board[player_guess_row][player_guess_column] == "X":
-            print("Captain please choose another coordinates!")
-            sleep(2)
-            player_guess_row, player_guess_column = SetAirship.user_atk_input(object, size)
-
-        # Hit or miss on computer hidden board and append enemy open guess board
-        if computer_hid_board.board[player_guess_row][player_guess_column] == "X":
-            print("One of the Enemy Airships is falling from the sky!")
-            sleep(2)
-            computer_guess_board.board[player_guess_row][player_guess_column] = "X"
-            clear()
-        else:
-            print("You shot went into the void!")
-            sleep(2)
-            computer_guess_board.board[player_guess_row][player_guess_column] = "-"
-            clear()        
-
-        # Check for win or loose for player and computer
-        if SetAirship.enemy_sunk_ships(computer_guess_board) == (size - 1):
-            clear()
-            print("-----------------------------------")
-            print("You win!")
-            print(f"You hit all {size - 1} Airships!")
-            print("-----------------------------------")
-            sleep(10)
-            break
-        
-        # Hit or miss on player board and append 
-        computer_guess_row = random.randint(0, (size - 1))
-        computer_guess_column = random.randint(0, (size - 1))
-        while player_guess_board.board[computer_guess_row][computer_guess_column] == "-" or player_guess_board.board[computer_guess_row][computer_guess_column] == "O":
-            computer_guess_row, computer_guess_column = random.randint(0, (size - 1)), random.randint(0, (size - 1))
-        if player_guess_board.board[computer_guess_row][computer_guess_column] == "X":
-            print("One of YOUR Airships is falling from the sky!")
-            sleep(2)
-            player_guess_board.board[computer_guess_row][computer_guess_column] = "O"
-            clear()
-        else:
-            print("The Enemy shot went into the void!")
-            sleep(2)
-            player_guess_board.board[computer_guess_row][computer_guess_column] = "-"
-            clear()        
-
-        if SetAirship.player_sunk_ships(player_guess_board) == (size - 1):
-            clear()
-            print("-----------------------------------")
-            print("You lose!")
-            print(f"The Enemy hit all your {size - 1} Airships!")
-            print("-----------------------------------")
-            sleep(10)
-            break
-        else:
-            turns_left -= 1
-            clear()
-            print(f"You have {turns_left} turns remaining!")
-            sleep(2)
-            if turns_left == 0:
-                clear()
-                SetBoard.print_to_console(computer_guess_board)
-                SetBoard.print_to_console(player_guess_board)
-                print("You run out of turns!")
-                sleep(10)
-                break        
-
-RunGame()
+    game.run_game()
