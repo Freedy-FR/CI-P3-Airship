@@ -134,8 +134,10 @@ class Game:
                 break
     
     def welcome_screen(self):
+        """Shows the welcome screen."""
         clear()
         Images.airship()
+        # Print welcome message
         print(TextCentering().center_text(
             f" {self.player_name} Welcome to Airship battles!\n"
             )
