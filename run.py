@@ -132,7 +132,7 @@ class Game:
                 clear()
                 self.player_name = name.capitalize()
                 break
-    
+
     def welcome_screen(self):
         """Shows the welcome screen."""
         clear()
@@ -145,40 +145,54 @@ class Game:
         sleep(3)
         clear()
 
-class TableSizeInput:
-    """
-    """
-    def table_size():        
-        print("Please choose your battlefield grid size!")
-        print("Insert 4: (4x4 Grid)-3 random ships")
-        print("Insert 6: (6x6 Grid)-5 random ships")
-        print("Insert 8: (8x8 Grid)-7 random ships\n")
-        size = input("Please insert your grid size!\n")
-        clear()
-        while True:
-            if len(size) == 0:
-                sleep(2)
-                print("We are going to need your prefered battlefield grid!")
-                print("Insert 4: (4x4 Grid)-3 random ships")
-                print("Insert 6: (6x6 Grid)-5 random ships")
-                print("Insert 8: (8x8 Grid)-7 random ships\n")
-                size = input("Please insert your grid size!\n")
-                clear()
-            elif (size != "4" and size != "6" and size != "8"):
-                sleep(2)
-                print("That is a invalid grid size!")
-                print("Insert 4: (4x4 Grid)-3 random ships")
-                print("Insert 6: (6x6 Grid)-5 random ships")
-                print("Insert 8: (8x8 Grid)-7 random ships\n")
-                size = input("Please insert your grid size!\n")
-                clear()
-            elif (size == "4" or size == "6" or size == "8"):
-                clear()
-                print("That is a fair grid size captain!")
-                sleep(2)
-                clear()
-                return int(size)
+    def table_size(self):
         
+        while True:
+            alert_table = TextCentering().center_text(
+                "That is an invalid grid size! Insert 4, 6, 8 !"
+                    )
+            Images.airship()
+            print(
+                TextCentering().center_text(
+                    "Please choose your battlefield grid size!\n"
+                    )
+                    )
+            print(
+                TextCentering().center_text(
+                    "Insert 4: (4x4 Grid)-3 random ships"
+                    )
+                    )
+            print(
+                TextCentering().center_text(
+                    "Insert 6: (6x6 Grid)-5 random ships"
+                    )
+                    )
+            print(
+                TextCentering().center_text(
+                    "Insert 8: (8x8 Grid)-7 random ships\n"
+                    )
+                    )
+            size = input(
+                TextCentering().center_text(
+                    "Please insert your grid size!\n"
+                    )
+                    )
+            clear()
+            if size not in ["4", "6", "8"]:
+                Images.airship()
+                print(alert_table)
+                sleep(2)
+                clear()
+            else:
+                Images.airship()
+                print(
+                    TextCentering().center_text(
+                        "That is a fair grid size captain!"
+                        )
+                        )
+                sleep(2)
+                self.size = int(size)
+                break       
 
 
 class SetAirship:
