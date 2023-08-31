@@ -48,6 +48,43 @@ class Images:
     ''')
 
 
+class Board:
+    def __init__(self, size, title):
+        self.size = size
+        self.title = title
+        self.board = [[" "] * size for _ in range(size)]
+
+    def print_to_console(self):
+        # Create an username title to the board and center username
+        print("---{:^10}--- ".format(self.title))
+
+        # Create the heading and separator based on the size given
+        heading = [" "] + [str(i) for i in range(self.size)]
+        separator = ["+"] * self.size
+
+        # Print the heading and separator
+        print(" " + " ".join(heading))
+        print("   " + " ".join(separator))
+        
+        # Create an instance of the board
+        for i, row in enumerate(self.board):
+            print("-{}|{}|".format(i, "|".join(row)))
+        print()
+        
+    def create_airships(self):
+        # Generate random coordinates for placing an airship
+        for i in range((self.size - 1)):
+            x_row, y_column = random.randint(0, (self.size - 1)), random.randint(0, (self.size - 1))
+
+            # Check if the chosen coordinates are taken
+            while self.board[x_row][y_column] == "X":
+                # If occupied, generate new random coordinates
+                x_row, y_column = random.randint(0, (self.size - 1)), random.randint(0, (self.size - 1))
+            
+            # Place airship at the random spot
+            self.board[x_row][y_column] = "X"
+
+
 class UsernameInput:
     """
     Ask for username input and validate name
@@ -132,39 +169,6 @@ class TableSizeInput:
                 return int(size)
         
 
-
-class SetBoard:
-    """
-    Create a board instance and print to the console if called
-    """
-
-    def __init__(self, board, size, username):
-        self.board = board
-        self.username = username
-        self.size = size
-    
-    def print_to_console(self):
-
-        #Create an username title to the board and center username
-        print("---{:^10}--- ".format(self.username))
-
-        #Create the heading based on the size given
-        heading = []
-        separator = []
-        for i in range(self.size):
-            heading.append(f"{i}")
-            separator.append(f"|")
-        print("  " + " ".join(heading))
-        print("  " + " ".join(separator))
-
-
-        #Create an instance of the board
-        row_number = 0
-        for row in self.board:
-            # print("%d|%s|" % (row_number, "|".join(row)))
-            print("{}|{}|".format(row_number, "|".join(row)))
-            row_number += 1
-        print()
 
 class SetAirship:
     def __init__(self, board, size):
