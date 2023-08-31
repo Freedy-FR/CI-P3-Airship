@@ -49,12 +49,14 @@ class Images:
 
 
 class Board:
+    """Class that creates boards and airships."""
     def __init__(self, size, title):
         self.size = size
         self.title = title
         self.board = [[" "] * size for _ in range(size)]
 
     def print_to_console(self):
+        """Print the game board to the console."""
         # Create an username title to the board and center username
         print("---{:^10}--- ".format(self.title))
 
@@ -65,13 +67,14 @@ class Board:
         # Print the heading and separator
         print(" " + " ".join(heading))
         print("   " + " ".join(separator))
-        
-        # Create an instance of the board
+       
+        # Create an enumerate the boards
         for i, row in enumerate(self.board):
             print("-{}|{}|".format(i, "|".join(row)))
         print()
         
     def create_airships(self):
+        """Create airships on the game board."""
         # Generate random coordinates for placing an airship
         for i in range((self.size - 1)):
             x_row, y_column = random.randint(0, (self.size - 1)), random.randint(0, (self.size - 1))
