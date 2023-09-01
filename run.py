@@ -324,6 +324,32 @@ class Game:
                 sleep(10)
                 break
 
+            # Get computers random attack
+            computer_guess_row = random.randint(0, (self.size - 1))
+            computer_guess_column = random.randint(0, (self.size - 1))
+            while self.player_board.board[computer_guess_row][computer_guess_column] in ["-", "O"]:
+                computer_guess_row = random.randint(0, (self.size - 1))
+                computer_guess_column = random.randint(0, (self.size - 1))
+            
+            # Check if computer hit or miss
+            if self.player_board.board[computer_guess_row][computer_guess_column] == "X":
+                print(TextCentering().center_text(
+                    "One of YOUR Airships is falling from the sky!"
+                    )
+                    )
+                sleep(3)
+                self.player_board.board[computer_guess_row][computer_guess_column] = "O"
+                clear()
+            else:
+                print(TextCentering().center_text(
+                    "The Enemy shot went into the void!"
+                    )
+                    )
+                sleep(3)
+                self.player_board.board[computer_guess_row][computer_guess_column] = "-"
+                clear()
+
+
 
     @staticmethod
     def enemy_sunk_ships(board):
