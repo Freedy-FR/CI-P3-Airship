@@ -188,6 +188,7 @@ class Game:
                         )
                         )
                 sleep(2)
+                clear()
                 self.size = int(size)
                 break
     
@@ -202,6 +203,7 @@ class Game:
 
             # Validate the row input
             while int(x_row) not in range(0, self.size):
+                clear()
                 print(TextCentering().center_text(
                     "Not a valid row Captain!"
                     )
@@ -220,6 +222,7 @@ class Game:
 
             # Validate the column input
             while int(y_column) not in range(0, self.size):
+                clear()
                 print(TextCentering().center_text(
                     "Not a valid column Captain!"
                     )
@@ -266,8 +269,10 @@ class Game:
                     )
                     )
                 sleep(3)
-                player_guess_row, player_guess_column = self.get_user_atk_input()
-            
+                clear()
+                self.run_game()
+                # player_guess_row, player_guess_column = self.get_user_atk_input()
+
             # Check if player hit or miss
             if self.computer_hid_board.board[player_guess_row][player_guess_column] == "X":
                 print(TextCentering().center_text(
@@ -278,6 +283,7 @@ class Game:
                 self.computer_guess_board.board[player_guess_row][player_guess_column] = "X"
                 clear()
             else:
+                clear()
                 print(TextCentering().center_text(
                     "You shot went into the void!"
                     )
@@ -364,6 +370,7 @@ class Game:
                     )
                     )
                 sleep(3)
+                clear()
                 if self.turns_left == 0:
                     clear()
                     self.computer_guess_board.print_to_console()
@@ -391,8 +398,8 @@ class Game:
         sunk_ships = sum(row.count("0") for row in board.board)
         return sunk_ships
 
-# Code taken from stack overflow
 
+# Code taken from stack overflow
 def clear():
     """Clear the console screen"""
 
@@ -400,3 +407,29 @@ def clear():
         _ = system('cls')
     else:
         _ = system('clear')
+
+
+if __name__ == "__main__":
+    # Create a game instance
+    game = Game()
+    
+    # Ask player name
+    game.input_name()
+    
+    # Show welcome screen
+    game.welcome_screen()
+
+    # Ask player table size
+    game.table_size()
+
+    # Create boards
+    game.player_board = Board(game.size, game.player_name)
+    game.computer_hid_board = Board(game.size, "Enemy Hidden")
+    game.computer_guess_board = Board(game.size, "Enemy")
+
+    # Create airships
+    Board.create_airships(game.computer_hid_board)
+    Board.create_airships(game.player_board)
+
+    # Run Game
+    game.run_game()
