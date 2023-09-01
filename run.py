@@ -270,8 +270,40 @@ class Game:
                 f"Turns left = {self.turns_left}"
                 )
                 )
+            
+            # Get player input return
+            player_guess_row, player_guess_column = self.get_user_atk_input()
+            
+            # Check player input is valid
+            while self.computer_guess_board.board[player_guess_row][player_guess_column] in ["-", "X"]:
+                print(TextCentering().center_text(
+                    "Captain please choose another coordinates!"
+                    )
+                    )
+                sleep(3)
+                player_guess_row, player_guess_column = self.get_user_atk_input()
+            
+            # Check if player hit or miss
+            if self.computer_hid_board.board[player_guess_row][player_guess_column] == "X":
+                print(TextCentering().center_text(
+                    "One of the Enemy Airships is falling from the sky!"
+                    )
+                    )
+                sleep(3)
+                self.computer_guess_board.board[player_guess_row][player_guess_column] = "X"
+                clear()
+            else:
+                print(TextCentering().center_text(
+                    "You shot went into the void!"
+                    )
+                    )
+                sleep(3)
+                self.computer_guess_board.board[player_guess_row][player_guess_column] = "-"
+                clear()
+                self.turns_left -= 1
 
 
+            
 def RunGame():
 
     # get username input
