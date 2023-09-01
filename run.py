@@ -302,6 +302,33 @@ class Game:
                 clear()
                 self.turns_left -= 1
 
+            # Check if player wins
+            if self.enemy_sunk_ships(self.computer_guess_board) == (self.size - 1):
+                clear()
+                print(TextCentering().center_text(
+                    "-----------------------------------"
+                    )
+                    )
+                print(TextCentering().center_text(
+                    "You win!"
+                    )
+                    )
+                print(TextCentering().center_text(
+                    f"You hit all {self.size - 1} Airships!"
+                    )
+                    )
+                print(TextCentering().center_text(
+                    "-----------------------------------"
+                    )
+                    )
+                sleep(10)
+                break
+
+
+    @staticmethod
+    def enemy_sunk_ships(board):
+        sunk_ships = sum(row.count("X") for row in board.board)
+        return sunk_ships
 
             
 def RunGame():
