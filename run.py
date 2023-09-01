@@ -330,7 +330,7 @@ class Game:
             while self.player_board.board[computer_guess_row][computer_guess_column] in ["-", "O"]:
                 computer_guess_row = random.randint(0, (self.size - 1))
                 computer_guess_column = random.randint(0, (self.size - 1))
-            
+
             # Check if computer hit or miss
             if self.player_board.board[computer_guess_row][computer_guess_column] == "X":
                 print(TextCentering().center_text(
@@ -349,11 +349,59 @@ class Game:
                 self.player_board.board[computer_guess_row][computer_guess_column] = "-"
                 clear()
 
+            # Check if computer wins
+            if self.player_sunk_ships(self.player_board) == (self.size - 1):
+                clear()
+                print(TextCentering().center_text(
+                    "-----------------------------------"
+                    )
+                    )
+                print(TextCentering().center_text(
+                    "You lose!"
+                    )
+                    )
+                print(TextCentering().center_text(
+                    f"The Enemy hit all your {self.size - 1} Airships!"
+                    )
+                    )
+                print(TextCentering().center_text(
+                    "-----------------------------------"
+                    )
+                    )
+                sleep(10)
+                break
 
+            # Check if player run out of turns
+            else:
+                clear()
+                print(TextCentering().center_text(
+                    f"You have {self.turns_left} turns remaining!"
+                    )
+                    )
+                sleep(3)
+                if self.turns_left == 0:
+                    clear()
+                    self.computer_guess_board.print_to_console()
+                    self.player_board.print_to_console()
+                    print(TextCentering().center_text(
+                        "You lose!!"
+                        )
+                        )
+                    print(TextCentering().center_text(
+                        "You run out of turns!"
+                        )
+                        )
+                    sleep(10)
+                    break
 
     @staticmethod
     def enemy_sunk_ships(board):
         sunk_ships = sum(row.count("X") for row in board.board)
+        return sunk_ships
+
+    @staticmethod
+    def player_sunk_ships(board):
+        sunk_ships = sum(row.count("0") for row in board.board)
         return sunk_ships
 
             
