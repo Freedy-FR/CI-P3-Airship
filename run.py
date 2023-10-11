@@ -250,7 +250,6 @@ class Game:
         while self.turns_left > 0:
             # Display enemy and player boards
             self.computer_guess_board.print_to_console()
-            self.computer_hid_board.print_to_console()
             self.player_board.print_to_console()
 
             # Display turns left
