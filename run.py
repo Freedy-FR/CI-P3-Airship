@@ -205,7 +205,7 @@ class Game:
                     )
                 # Ask for row user input
                 x_row = input(TextCentering().center_text(
-                    "Enter the Enemy row number to attack: "
+                    "Enter the Enemy row number to attack:\n"
                 ))
 
                 # Validate the row input
@@ -214,7 +214,7 @@ class Game:
                     
                 # Ask for column user input
                 y_column = input(TextCentering().center_text(
-                    "Enter the Enemy column number to attack: "
+                    "Enter the Enemy column number to attack:\n"
                 ))
 
                 # Validate the column input
