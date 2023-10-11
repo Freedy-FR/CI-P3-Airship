@@ -191,65 +191,48 @@ class Game:
                 clear()
                 self.size = int(size)
                 break
-    
-    def get_user_atk_input(self):
-        """Get and validate user's attack coordinates."""
-        try:
-            # Ask for row user input
-            x_row = input(TextCentering().center_text(
-                "Enter the Enemy row number to attack: "
-                )
-                )
 
-            # Validate the row input
-            while int(x_row) not in range(0, self.size):
+    def get_user_atk_input(self):
+        """Validate user input."""
+        while True:  # Create an infinite loop
+            try:
                 clear()
-                self.computer_guess_board.print_to_console()
-                self.player_board.print_to_console()  
-                print(TextCentering().center_text(
-                    "Not a valid row Captain!"
-                    )
-                    )
-                sleep(2)
-                x_row = input(TextCentering().center_text(
-                    "Enter the Enemy row number to attack: "
-                    )
-                    )
-                    
-            # Ask for column user input
-            y_column = input(TextCentering().center_text(
-                "Enter the Enemy column number to attack: "
-                )
-                )
-            # Validate the column input
-            while int(y_column) not in range(0, self.size):
-                clear()
-                self.computer_guess_board.print_to_console()
-                self.player_board.print_to_console()       
-                print(TextCentering().center_text(
-                    "Not a valid column Captain!"
-                    )
-                    )
-                sleep(2)
-                y_column = input(TextCentering().center_text(
-                    "Enter the Enemy column number to attack: "
-                    )
-                    )
                 self.computer_guess_board.print_to_console()
                 self.player_board.print_to_console()
-            # Return the row and column
-            return int(x_row), int(y_column)
+                # Ask for row user input
+                x_row = input(TextCentering().center_text(
+                    "Enter the Enemy row number to attack: "
+                ))
 
-        except (ValueError, KeyError, AttributeError):
-            # Display a helper message if invalid input
-            clear()
-            print(TextCentering().center_text(
-                f"Invalid input, please insert numbers 0 to {self.size - 1}"
-                )
-                )
-            sleep(3)
-            clear()
-            self.run_game()
+                # Validate the row input
+                if int(x_row) not in range(0, self.size):
+                    raise ValueError("Invalid input")
+                    
+                # Ask for column user input
+                y_column = input(TextCentering().center_text(
+                    "Enter the Enemy column number to attack: "
+                ))
+
+                # Validate the column input
+                if int(y_column) not in range(0, self.size):
+                    raise ValueError("Invalid input")
+
+                # If the input is valid, break out of the loop
+                break
+
+            except ValueError:
+                # Display a helper message if invalid input
+                clear()
+                self.computer_guess_board.print_to_console()
+                self.player_board.print_to_console()
+                print(TextCentering().center_text(
+                    f"Invalid input, please insert numbers 0 to {self.size - 1}"
+                ))
+                sleep(3)
+                clear()
+        
+        # Return the row and column
+        return int(x_row), int(y_column)
 
     def run_game(self):
         """Run the main game loop."""
