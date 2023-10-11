@@ -199,6 +199,10 @@ class Game:
                 clear()
                 self.computer_guess_board.print_to_console()
                 self.player_board.print_to_console()
+                print(TextCentering().center_text(
+                    f"You have {self.turns_left} turns remaining!"
+                    )
+                    )
                 # Ask for row user input
                 x_row = input(TextCentering().center_text(
                     "Enter the Enemy row number to attack: "
@@ -263,6 +267,8 @@ class Game:
 
             # Check if player hit or miss
             if self.computer_hid_board.board[player_guess_row][player_guess_column] == "X":
+                clear()
+                Images.airship()
                 print(TextCentering().center_text(
                     "One of the Enemy Airships is falling from the sky!"
                     )
@@ -272,6 +278,7 @@ class Game:
                 clear()
             else:
                 clear()
+                Images.airship()
                 print(TextCentering().center_text(
                     "You shot went into the void!"
                     )
@@ -284,6 +291,7 @@ class Game:
             # Check if player wins
             if self.enemy_sunk_ships(self.computer_guess_board) == (self.size - 1):
                 clear()
+                Images.airship()
                 print(TextCentering().center_text(
                     "-----------------------------------"
                     )
@@ -312,6 +320,7 @@ class Game:
 
             # Check if computer hit or miss
             if self.player_board.board[computer_guess_row][computer_guess_column] == "X":
+                Images.airship()
                 print(TextCentering().center_text(
                     "One of YOUR Airships is falling from the sky!"
                     )
@@ -320,6 +329,7 @@ class Game:
                 self.player_board.board[computer_guess_row][computer_guess_column] = "O"
                 clear()
             else:
+                Images.airship()
                 print(TextCentering().center_text(
                     "The Enemy shot went into the void!"
                     )
@@ -331,6 +341,7 @@ class Game:
             # Check if computer wins
             if self.player_sunk_ships(self.player_board) == (self.size - 1):
                 clear()
+                Images.airship()
                 print(TextCentering().center_text(
                     "-----------------------------------"
                     )
@@ -353,6 +364,7 @@ class Game:
             # Check if player run out of turns
             else:
                 clear()
+                Images.airship()
                 print(TextCentering().center_text(
                     f"You have {self.turns_left} turns remaining!"
                     )
@@ -363,6 +375,7 @@ class Game:
                     clear()
                     self.computer_guess_board.print_to_console()
                     self.player_board.print_to_console()
+                    Images.airship()
                     print(TextCentering().center_text(
                         "You lose!!"
                         )
