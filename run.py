@@ -34,7 +34,13 @@ class Images:
 
 
 class Board:
-    """Class that creates boards and airships."""
+    """Class that creates boards and airships.
+
+    Attributes:
+        size (int): The size of the board.
+        title (str): The title of the board (added dynamically in __init__).
+        board (List[List[str]]): The game board represented as a list of lists.
+    """
     def __init__(self, size, title):
         self.size = size
         self.title = title
@@ -140,7 +146,7 @@ class Game:
         while True:
             # Store alert message to the user
             alert_table = TextCentering().center_text(
-                "That is an invalid grid size! Insert 4, 6, 8 !"
+                "That is an invalid grid size! Insert 4, 6!"
                     )
             Images.airship()
 
@@ -160,11 +166,6 @@ class Game:
                     "Insert 6: (6x6 Grid)-5 random ships"
                     )
                     )
-            print(
-                TextCentering().center_text(
-                    "Insert 8: (8x8 Grid)-7 random ships\n"
-                    )
-                    )
 
             # Ask for user input
             size = input(
@@ -175,7 +176,7 @@ class Game:
             clear()
 
             # Validate table options
-            if size not in ["4", "6", "8"]:
+            if size not in ["4", "6"]:
                 Images.airship()
                 print(alert_table)
                 sleep(2)
