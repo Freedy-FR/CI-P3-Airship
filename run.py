@@ -4,6 +4,7 @@ import random
 
 print()
 
+
 class TextCentering:
     """Class for centering text within a specified width."""
     def __init__(self, width=80, fillchar=' '):
@@ -63,17 +64,18 @@ class Board:
         for i, row in enumerate(self.board):
             print("-{}|{}|".format(i, "|".join(row)))
         print()
-        
+
     def create_airships(self):
         """Create airships on the game board."""
-        # Generate random coordinates for placing an airship
-        for i in range((self.size - 1)):
-            x_row, y_column = random.randint(0, (self.size - 1)), random.randint(0, (self.size - 1))
+        for _ in range(self.size - 1):
+            x_row = random.randint(0, self.size - 1)
+            y_column = random.randint(0, self.size - 1)
 
             # Check if the chosen coordinates are taken
             while self.board[x_row][y_column] == "X":
                 # If occupied, generate new random coordinates
-                x_row, y_column = random.randint(0, (self.size - 1)), random.randint(0, (self.size - 1))
+                x_row = random.randint(0, self.size - 1)
+                y_column = random.randint(0, self.size - 1)
 
             # Place airship at the random spot
             self.board[x_row][y_column] = "X"
@@ -292,6 +294,7 @@ class Game:
             # Check if player wins
             if self.enemy_sunk_ships(self.computer_guess_board) == (self.size - 1):
                 clear()
+                clear()
                 Images.airship()
                 print(TextCentering().center_text(
                     "-----------------------------------"
@@ -341,6 +344,7 @@ class Game:
 
             # Check if computer wins
             if self.player_sunk_ships(self.player_board) == (self.size - 1):
+                clear()
                 clear()
                 Images.airship()
                 print(TextCentering().center_text(
