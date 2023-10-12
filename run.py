@@ -91,6 +91,25 @@ class Game:
         self.computer_g_board = None
         self.turns_left = 10
 
+    def restart_game(self):
+        """Reset the main game."""
+        clear()
+        Images.airship()
+        print(TextCentering().center_text(
+            "Thanks for playing! Restarting the game..."
+            )
+            )
+        sleep(5)
+        self.__init__()  # Reset the game instance
+        self.input_name()
+        self.table_size()
+        self.player_board = Board(self.size, self.player_name)
+        self.computer_hid_board = Board(self.size, "Enemy Hidden")
+        self.computer_g_board = Board(self.size, "Enemy")
+        Board.create_airships(self.computer_hid_board)
+        Board.create_airships(self.player_board)
+        self.run_game()
+
     def input_name(self):
         """Ask for the player's name and validate it."""
         while True:
@@ -321,7 +340,7 @@ class Game:
                     )
                     )
                 sleep(10)
-                break
+                game.restart_game()
 
             # Get computers random attack
             computer_guess_row = random.randint(0, (self.size - 1))
@@ -384,7 +403,7 @@ class Game:
                     )
                     )
                 sleep(10)
-                break
+                game.restart_game()
 
             # Check if player run out of turns
             else:
@@ -410,7 +429,7 @@ class Game:
                         )
                         )
                     sleep(10)
-                    break
+                    game.restart_game()
 
     @staticmethod
     def enemy_sunk_ships(board):
