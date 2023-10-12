@@ -10,7 +10,7 @@ class TextCentering:
     def __init__(self, width=80, fillchar=' '):
         self.width = width
         self.fillchar = fillchar
-    
+
     def center_text(self, text):
         """Center the given text within the specified width."""
         centered_text = text.center(self.width, self.fillchar)
@@ -23,12 +23,12 @@ class Images:
     def airship():
         """Print the airship image."""
         print('''\x1b[91m
-                               Airship Battles 
+                               Airship Battles
                                 _..--=--..._
                              .-'            '-.  .-.
-                            /.'              '.\/  |
+                            /.'              '.||  |
                            |=-                -=| (
-                            \'.               .'/\  |
+                            \'.               .'||  |
                              '-.,_____ _____.-'  '-'
                                    [_____]=8  \033[0m\n
     ''')
@@ -59,7 +59,7 @@ class Board:
         # Print the heading and separator
         print(" " + " ".join(heading))
         print("   " + " ".join(separator))
-       
+
         # Create an enumerate the boards
         for i, row in enumerate(self.board):
             print("-{}|{}|".format(i, "|".join(row)))
@@ -88,7 +88,7 @@ class Game:
         self.size = 0
         self.player_board = None
         self.computer_hid_board = None
-        self.computer_guess_board = None
+        self.computer_g_board = None
         self.turns_left = 10
 
     def input_name(self):
@@ -200,7 +200,7 @@ class Game:
         while True:  # Create an infinite loop
             try:
                 clear()
-                self.computer_guess_board.print_to_console()
+                self.computer_g_board.print_to_console()
                 self.player_board.print_to_console()
                 print(TextCentering().center_text(
                     f"You have {self.turns_left} turns remaining!"
@@ -214,7 +214,7 @@ class Game:
                 # Validate the row input
                 if int(x_row) not in range(0, self.size):
                     raise ValueError("Invalid input")
-                    
+
                 # Ask for column user input
                 y_column = input(TextCentering().center_text(
                     "Enter the Enemy column number to attack:\n"
@@ -230,14 +230,14 @@ class Game:
             except ValueError:
                 # Display a helper message if invalid input
                 clear()
-                self.computer_guess_board.print_to_console()
+                self.computer_g_board.print_to_console()
                 self.player_board.print_to_console()
                 print(TextCentering().center_text(
-                    f"Invalid input, please insert numbers 0 to {self.size - 1}"
+                    f"Invalid input, insert numbers 0 to {self.size - 1}"
                 ))
                 sleep(3)
                 clear()
-        
+
         # Return the row and column
         return int(x_row), int(y_column)
 
@@ -245,7 +245,7 @@ class Game:
         """Run the main game loop."""
         while self.turns_left > 0:
             # Display enemy and player boards
-            self.computer_guess_board.print_to_console()
+            self.computer_g_board.print_to_console()
             self.player_board.print_to_console()
 
             # Display turns left
@@ -253,12 +253,15 @@ class Game:
                 f"Turns left = {self.turns_left}"
                 )
                 )
-            
+
             # Get player input return
             player_guess_row, player_guess_column = self.get_user_atk_input()
-            
+
             # Check player input is valid
-            while self.computer_guess_board.board[player_guess_row][player_guess_column] in ["-", "X"]:
+            while self.computer_g_board.board[
+                player_guess_row][
+                    player_guess_column] in ["-", "X"]:
+
                 print(TextCentering().center_text(
                     "Captain please choose another coordinates!"
                     )
@@ -266,10 +269,11 @@ class Game:
                 sleep(3)
                 clear()
                 self.run_game()
-                # player_guess_row, player_guess_column = self.get_user_atk_input()
 
             # Check if player hit or miss
-            if self.computer_hid_board.board[player_guess_row][player_guess_column] == "X":
+            if self.computer_hid_board.board[
+                player_guess_row][
+                    player_guess_column] == "X":
                 clear()
                 Images.airship()
                 print(TextCentering().center_text(
@@ -277,7 +281,9 @@ class Game:
                     )
                     )
                 sleep(3)
-                self.computer_guess_board.board[player_guess_row][player_guess_column] = "X"
+                self.computer_g_board.board[
+                    player_guess_row][
+                        player_guess_column] = "X"
                 clear()
             else:
                 clear()
@@ -287,12 +293,14 @@ class Game:
                     )
                     )
                 sleep(3)
-                self.computer_guess_board.board[player_guess_row][player_guess_column] = "-"
+                self.computer_g_board.board[
+                    player_guess_row][
+                        player_guess_column] = "-"
                 clear()
                 self.turns_left -= 1
 
             # Check if player wins
-            if self.enemy_sunk_ships(self.computer_guess_board) == (self.size - 1):
+            if self.enemy_sunk_ships(self.computer_g_board) == (self.size - 1):
                 clear()
                 clear()
                 Images.airship()
@@ -318,19 +326,28 @@ class Game:
             # Get computers random attack
             computer_guess_row = random.randint(0, (self.size - 1))
             computer_guess_column = random.randint(0, (self.size - 1))
-            while self.player_board.board[computer_guess_row][computer_guess_column] in ["-", "O"]:
+            while self.player_board.board[
+                computer_guess_row][
+                    computer_guess_column
+                    ] in ["-", "O"]:
                 computer_guess_row = random.randint(0, (self.size - 1))
                 computer_guess_column = random.randint(0, (self.size - 1))
 
             # Check if computer hit or miss
-            if self.player_board.board[computer_guess_row][computer_guess_column] == "X":
+            if self.player_board.board[
+                computer_guess_row][
+                    computer_guess_column
+                    ] == "X":
                 Images.airship()
                 print(TextCentering().center_text(
                     "One of YOUR Airships is falling from the sky!"
                     )
                     )
                 sleep(3)
-                self.player_board.board[computer_guess_row][computer_guess_column] = "O"
+                self.player_board.board[
+                    computer_guess_row][
+                        computer_guess_column
+                        ] = "O"
                 clear()
             else:
                 Images.airship()
@@ -339,7 +356,10 @@ class Game:
                     )
                     )
                 sleep(3)
-                self.player_board.board[computer_guess_row][computer_guess_column] = "-"
+                self.player_board.board[
+                    computer_guess_row][
+                        computer_guess_column
+                        ] = "-"
                 clear()
 
             # Check if computer wins
@@ -378,7 +398,7 @@ class Game:
                 clear()
                 if self.turns_left == 0:
                     clear()
-                    self.computer_guess_board.print_to_console()
+                    self.computer_g_board.print_to_console()
                     self.player_board.print_to_console()
                     Images.airship()
                     print(TextCentering().center_text(
@@ -418,10 +438,10 @@ def clear():
 if __name__ == "__main__":
     # Create a game instance
     game = Game()
-    
+
     # Ask player name
     game.input_name()
-    
+
     # Show welcome screen
     game.welcome_screen()
 
@@ -431,7 +451,7 @@ if __name__ == "__main__":
     # Create boards
     game.player_board = Board(game.size, game.player_name)
     game.computer_hid_board = Board(game.size, "Enemy Hidden")
-    game.computer_guess_board = Board(game.size, "Enemy")
+    game.computer_g_board = Board(game.size, "Enemy")
 
     # Create airships
     Board.create_airships(game.computer_hid_board)
