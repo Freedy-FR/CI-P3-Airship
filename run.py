@@ -100,7 +100,7 @@ class Game:
             )
             )
         sleep(5)
-        self.__init__()  # Reset the game instance
+        self.__init__()
         self.input_name()
         self.table_size()
         self.player_board = Board(self.size, self.player_name)
@@ -209,7 +209,7 @@ class Game:
                         "That is a fair grid size captain!"
                         )
                         )
-                sleep(2)
+                sleep(3)
                 clear()
                 self.size = int(size)
                 break
