@@ -187,13 +187,18 @@ The initial flowchart for the project was created at the project's inception. Wh
  - Message displayed upon a player's defeat in the game.
  <br>
 
- ![Losing message]()
+ ![Losing message](docs/media/gifs/feat-lose-noships.gif)
 
-### **Restart**
- - Restart
+  - Message displayed upon a player's running out of turns.
  <br>
 
- ![]()
+ ![Out of turns](docs/media/gifs/feat-lose-turns.gif)
+
+### **Restart**
+ - Restarting message shown at the conclusion of the game.
+ <br>
+
+ ![Restarting message](docs/media/gifs/fet-restart-message.gif)
 
  
 
