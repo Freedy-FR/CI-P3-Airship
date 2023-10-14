@@ -439,7 +439,7 @@ class Game:
     @staticmethod
     def player_sunk_ships(board):
         """Count the number if player sunken ships"""
-        sunk_ships = sum(row.count("0") for row in board.board)
+        sunk_ships = sum(row.count("O") for row in board.board)
         return sunk_ships
 
 
