@@ -206,10 +206,10 @@ The initial flowchart for the project was created at the project's inception. Wh
 
 ### **Front-end features**
 
- - Favicon and dynamic background/GIF
+ - Favicon icon
  <br>
 
- ![Favicon and dynamic background/GIF](assets/shared_images/favicon_and_dynamic_background.gif)
+ ![Favicon Icon](docs/media/images/feat-favicon.png)
 
  - GitHub and Youtube icon, 'Run Program' button hover colour change
  <br>
