@@ -219,19 +219,38 @@ The initial flowchart for the project was created at the project's inception. Wh
  - Main Page Header
  <br>
 
- ![Main Page Header](assets/shared_images/gitHub_icon_opening_page_in_new_tab.gif)
+ ![Main Page Header](docs/media/images/feat-header.png)
 
- - Youtube icon opening page in new tab
+ - Footer with Github icon opening page in new tab and copyright name
  <br>
  
- ![Youtube icon opening page in new tab](assets/shared_images/youtube_icon_opening_page_in_new_tab.gif)
+ ![Github icon opening page in new tab and name](docs/media/images/feat-footer.png)
 
 ---
 
 ## **Future Implementations**
-The author would like to implement random question order and add a lot more questions/answers/more knowledge. Also, give the user option to use various 'game modes' like easy, medium and hard and corresponding questions. Implement timer that the user can turn on/off for added challenge and more score points.
 
-[Back to top ⇧](#space-quiz)
+### Future Implementations
+To further enhance the "Airship Battles" game and provide an immersive gaming experience, the following features and improvements can be added in future updates:
+
+1. **Difficulty Levels:** Implement different difficulty levels, such as "Novice," "Captain," and "Admiral," each with varying levels of challenge. Players can choose their preferred difficulty to test their strategic skills.
+
+2. **Leaderboard:** Create a global leaderboard where players can compete for the top scores. This adds a competitive element to the game, motivating players to achieve high scores and top rankings.
+
+3. **Expanded Grid Sizes:** Introduce additional grid sizes, such as "Small," "Medium," and "Large," each with its own set of airships and challenges. Players can select their desired grid size to vary the gameplay.
+
+4. **Ships with Multiple Sizes:** Add airships of different sizes, including single-cell airships and larger ones that span multiple cells on the grid. This adds complexity to the game as players must strategically target and sink various-sized ships.
+
+5. **Sound and Visual Effects:** Enhance the game's audio and visual effects with immersive soundtracks, animations for airship battles, and explosive effects when airships are sunk, making the gameplay more exciting and engaging.
+
+6. **Option to Restart or Exit:** Provide players with the option to restart the game or exit to the main menu at any point during gameplay. This offers flexibility and convenience to players.
+
+7. **Improved Visuals:** Enhance the overall visuals of the game, including background graphics, user interface elements, and airship designs. Improved visuals make the game more visually appealing.
+
+These future implementations will elevate "Airship Battles" to the next level, offering players a more challenging and captivating gaming experience with options for customization, improved audio-visual elements, and the addition of airships with multiple sizes.
+
+
+[Back to top ⇧](#airship-battles)
 
 ---
 
@@ -245,28 +264,21 @@ The author would like to implement random question order and add a lot more ques
 
 ### **Programs Used**
 
-- [GitHub](https://github.com/ "Link to GitHub page") - Source code hosted on GitHub, deployed using Git Pages.
+- [GitHub](https://github.com/ "Link to GitHub page") - Source code hosted on GitHub.
 - [GitPod](https://www.gitpod.io/ "Link to GitPod page") - Used to commit, comment and push code during the development process.
 - [Font Awesome](https://fontawesome.com/ "Link to Font Awesome page") - GitHub icon was obtained from Font Awesome.
-- [Balsamiq](https://balsamiq.com/ "Link to Balsamiq page") - Used to create wireframes and website structure map for the project.
-- [Visual Studio Code + Spell Checker add on](https://code.visualstudio.com/ "Link to Visual Studio page") - Used to spell-check the html and css code
-- [Google Keep](https://keep.google.com/ "Link to Google Keep page") - Used to make notes during the project duration
-- [LanguageTool](https://languagetool.org/ "Link to Language Tool page") - Used to spell-check the contents of README.md
-- [Google Fonts](https://fonts.google.com/ "Link to Google fonts page") - Used to import fonts to the project
-- [GifCap](https://gifcap.dev/ "Link to GifCap page") - used to capture gif-s of the project 
-- [Heroku](https://www.heroku.com/ "Link to Heroku page") - used to deploy the project
-- [XConvert](https://www.xconvert.com/compress-gif "Link to XConvert page") - used to compress GIF file
-- [Imgur](https://imgur.com/ "Link to Imgur page") - used to host the background image and favicon
-- [Patorjk](http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20 "Link to Patorjk page") - used to convert text into ASCII art
-- [Google worksheet](https://www.google.com/sheets/about/ "Link to Google sheets page") - used to host the worksheet to hold data
+- [GifCap](https://gifcap.dev/ "Link to GifCap page") - used to capture gif-s of the project .
+- [Heroku](https://www.heroku.com/ "Link to Heroku page") - used to deploy the project.
+- [Cloudinary](https://cloudinary.com/ "Link to Cloudinary") - used to host the background image and favicon
 - [Lucidchart](https://www.lucidchart.com/pages/examples/flowchart-maker "Link to Lucidchart page") - used to make the flowchart for the project
 
-[Back to top ⇧](#space-quiz)
+[Back to top ⇧](#airship-battles)
 
 ---
 
 ## **Deployment**
-The project was written and hosted on [GitHub](https://github.com/ "Link to GitHub page"). The author used GitHub's terminal output with command 'python3 run.py' to run the program logic/game. After the project was developed enough, it was deployed on [Heroku](https://www.heroku.com/ "Link to Heroku page") using the following method:
+The project was written and hosted on [GitHub](https://github.com/ "Link to GitHub page"). The author used GitHub's terminal output with the command `python3 run.py` to run the program logic/game. After the project was developed sufficiently, it was deployed on [Heroku](https://www.heroku.com/ "Link to Heroku page") using the following method:
+
 
 1. Add dependencies in GitPod to requirements.txt file with command "pip3 freeze > requirements.txt"
 2. Commit and push to GitHub
@@ -280,7 +292,7 @@ The project was written and hosted on [GitHub](https://github.com/ "Link to GitH
 10. Enable automatic deployment and/or deploy manually
 11. Click on Deploy
 
-[Back to top ⇧](#space-quiz)
+[Back to top ⇧](#airship-battles)
 
 ---
 
@@ -288,7 +300,7 @@ The project was written and hosted on [GitHub](https://github.com/ "Link to GitH
 
 Testing information can be found in a separate testing file [TESTING.md](/TESTING.md).
 
-[Back to top ⇧](#space-quiz)
+[Back to top ⇧](#airship-battles)
 
 ---
 
@@ -296,46 +308,29 @@ Testing information can be found in a separate testing file [TESTING.md](/TESTIN
 
 ### **Code used and adapted**
 
- - The author used his previous projects, [Boudoir Studio](https://boiann.github.io/boudoir-studio/index.html "Link to Boudoir Studio home page") ( GithHub repository [here](https://boiann.github.io/boudoir-studio/index.html "Link to Boudoir Studio home page") ), and [Budget Calculator](https://boiann.github.io/budget-calculator/ "Link to Budget Calculator") ( GithHub repository [here](https://github.com/Boiann/budget-calculator "Link to Budget Calculator GitHub repository") ) as a source for looking up the code for CSS and README purposes mainly.
- - [Code Institute template](https://github.com/Code-Institute-Org/python-essentials-template "Link to CI Python template") was used to start the project.
- - Using [Google worksheet](https://www.google.com/sheets/about/ "Link to Google sheets page") to manipulate questions and answers was seen during  Code Institute [Love Sandwiches](https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+LS101+2021_T1/courseware/293ee9d8ff3542d3b877137ed81b9a5b/58d3e90f9a2043908c62f31e51c15deb/ "Link for Love Sandwiches project") project, ( GithHub repository [here](https://github.com/Code-Institute-Org/python-essentials-template "Link to CI Python template") ).
- - [Pub Quiz Challenge](https://pub-quiz-challenge.herokuapp.com/ "Link to Pub Quiz Challenge") ( GithHub repository [here](https://github.com/CI-Tom/pub-quiz-challenge "Pub Quiz Challenge repository page") ) was studied in depth to get a sense of how a quiz game in Python would work, and to get a sense of the quiz layout itself. It has also provided the solution for pairing the questions with the right answers.
- - [Football Quiz](https://football-quiz-game.herokuapp.com/ "Link to Football Quiz") ( GithHub repository [here](https://github.com/mikyrenato/3rd_Project_Quiz_Game "Football Quiz repository page") ) was taken note of because the CLI was centered and the image background was applied. This is also where the author learned about tabular display of the leaderboard.
- - [Wheel of Fortune](https://the-wheel-of-fortune.herokuapp.com/ "Link to Wheel of Fortune") ( GithHub repository [here](https://github.com/LudovicLeGuen/Wheel-of-Fortune "Wheel of Fortune repository page") ) was studied and this is where the author noticed and learned about clearing the screen in CLI.
- - [Harry Potter Adventure Game](https://harry-potter-adventure-game.herokuapp.com/ "Link to Harry Potter Adventure Game") ( GithHub repository [here](https://github.com/AlexaH88/harry-potter-adventure-game "Harry Potter Adventure Game repository page") ) was studied to fix the background issue in HTML, more on this in BUGS section in [TESTING.md](/TESTING.md).
- - [Carl Sagan quotes webpage](https://www.goodreads.com/author/quotes/10538.Carl_Sagan "Link to Carl Sagan quotes webpage") was used to copy Mr. Sagan's quotes for intro/outro.
- - [Space Trivia Questions](https://conversationstartersworld.com/trivia-questions/space-trivia-questions/ "Link to Space Trivia Questions") was where the author copied the questions, answers and 'more knowledge' info from.
+- The author used [Space Quiz](https://github.com/Boiann/space-quiz) from [Boiann Github](https://github.com/Boiann) as the basis for layouts and index templates.
+
+- The author used [Space Quiz](https://github.com/Boiann/space-quiz) from [Boiann Github](https://github.com/Boiann) as the basis for README and TESTING templates.
+
+- The author used [Battleship](https://github.com/gbrough/battleship) from [Garrett Github](https://github.com/gbrough) as the basis for the logic in run.py templates.
+
+
 
 ### **Websites visited to gather knowledge**
+
 There were many sites visited during the duration of the project.
+
 [Google](https://google.com/ "Google home page") was used to produce results of the specific query, and [Stack Overflow](https://stackoverflow.com/ "Stack Overflow home page") proved to be the best source of information for various queries/issues. 
 
 The standout webpages are:
-- [This](https://stackoverflow.com/questions/5967500/how-to-correctly-sort-a-string-with-a-number-inside "Link to Sorting a string") website was used to learn about sorting a string.
- - [This](https://pypi.org/project/tabulate/ "Link to tabulate") website was used to learn about tabulating the leaderboard.
- - [This](https://www.geeksforgeeks.org/clear-screen-python/ "Link to sleep") website was used to learn about sleep.
- - [This](https://www.101computing.net/python-typing-text-effect/ "Link to typing print and clear screen") website was used to learn about typing print, input and clear screen.
- - [This](https://stackoverflow.com/questions/46112605/python3-issue-with-calling-execopen-read-inside-a-function "Link to restart program") website was used to learn about restarting the program.
- - [This](https://www.codingem.com/python-print-on-the-same-line/ "Link to print on the same line") website was used to learn about printing on a same line.
+ - [geeksforgeeks](https://www.geeksforgeeks.org/clear-screen-python/ "Link to clear screen") website was used to learn about clear screen.
+ - [Open AI](https://openai.com/chatgpt "Link to open AI screen")  AI-powered language model - for general purpose queries. 
 
 ###  **Acknowledgments**
-This whole project is dedicated to Carl Sagan, astronomer, planetary scientist, cosmologist, astrophysicist, astrobiologist, author, and science communicator.
-His book 'Cosmos' inspired me as a child and geared me towards sciences and astronomy.
 
-Without support I got from other people, this project would never be realized. I'll try and remember to thank everyone and everything I can!
+- To Code Institute for the support and attention.
+- My heartfelt thanks to my amazing wife, Marcielly, for her constant support and encouragement during the entire project.
 
-- Mirjana, my wife, thank you for your support and cheering me on, lifting me 
-back up when it got hard. Thank you for taking care of all the housework and food, children and numerous other responsibilities while I was busy with full time job and doing this project on the side. Without you this journey into career change would never be possible.
-- A., G. and V., my three beautiful girls. Thank you for being so understanding during the project work. Thank you from the bottom of my heart for being who you are, wonderful and delightful souls. You make me proud to be your dad.
-- Boris, my brother, thank you for testing my project so thoroughly, and for your support.
-- Marija and Boris, my mother and father, thank you for making me feel like a superstar when I announced I'm starting this journey.
-- John, my friend, thank you for starting me on this path, and for your support, chats and sharing the things you learned.
-- Helen from Code Institute, thank you believing in me and making this change possible.
-- Slack community, thank you for being a constant source of good information.
-Special mentions are Sirinya_5P, Kate L_5P and Tomislav_5P, whose praise lifted my spirits and reinforced the notion that I can do this.
-- Koko, my mentor, thank you for being an incredible source of solutions and good advice, your support meant a great deal during the project.
-- C8H10N4O2 in a cup. Thank you for existing.
-
-[Back to top ⇧](#space-quiz)
+[Back to top ⇧](#airship-battles)
 
 ***
