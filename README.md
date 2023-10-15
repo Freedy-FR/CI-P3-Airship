@@ -211,15 +211,15 @@ The initial flowchart for the project was created at the project's inception. Wh
 
  ![Favicon Icon](docs/media/images/feat-favicon.png)
 
- - GitHub and Youtube icon, 'Run Program' button hover colour change
+ - Page Title
  <br>
 
- ![GitHub and Youtube icon, 'Run Program' button hover colour change](assets/shared_images/icons_and_button_hover_color_change.gif)
+ ![Page Title](docs/media/images/feat-title.png)
 
- - GitHub icon opening page in new tab
+ - Main Page Header
  <br>
 
- ![GitHub icon opening page in new tab](assets/shared_images/gitHub_icon_opening_page_in_new_tab.gif)
+ ![Main Page Header](assets/shared_images/gitHub_icon_opening_page_in_new_tab.gif)
 
  - Youtube icon opening page in new tab
  <br>
