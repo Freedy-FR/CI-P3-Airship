@@ -146,10 +146,14 @@ There were many 'small' bugs the author had to deal with during the development 
 - Not so much a bug, but there was a typo that affected the count of player-sunk ships. Instead of using "O" to check the count, "0" (zero) was mistakenly used, creating a condition that didn't count the number of player-sunk ships correctly, effectively making the player invincible. The issue has been resolved in the code below.
 
     *Before*
+    <br>
+
     ![Invincible player before](docs/media/testing/bug1-before.png)
     <br>
 
     *After*
+    <br>
+    
     ![Invincible player after](docs/media/testing/bug1-after.png)
     <br>
 
