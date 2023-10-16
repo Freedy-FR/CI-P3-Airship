@@ -23,16 +23,13 @@ Visit the live site [Here.](https://pp3-airship.herokuapp.com/)
   * [Structure](#structure)
 
 * [Features](#features)
-  * [Intro](#intro)
-  * [Name input](#name-input)
-  * [Guide](#guide)
-  * [Quiz](#quiz)
-  * [More knowledge](#more-knowledge)
-  * [Quiz end messages](#quiz-end-messages)
-  * [Leaderboard update message and display](#leaderboard-update-message-and-display)
-  * [Quiz replay](#quiz-replay)
-  * [Secret username](#secret-username)
-  * [Front-end features](#front-end-features)
+  * [Background](#background)
+  * [Name Input](#name-input)
+  * [Grid Selection](#grid-selection)
+  * [Board](#board)
+  * [End Messages](#end-messages)
+  * [Restart](#restart)
+  * [Front-End Features](#front-end-features)
 
 * [Future Implementations](#future-implementations)
 
@@ -70,7 +67,7 @@ The decision to dedicate this project was inspired by the themes of Final Fantas
 
 - **Automatic Restart**: Begin a new game without needing to use a mouse at the end of the game.
 
-- **Simplicity and Relaxation**: Immerse yourself in a straightforward and relaxing space-themed webpage, complementing the overall gaming experience.
+- **Simplicity and Relaxation**: Immerse yourself in a straightforward and relaxing Airship-themed webpage, complementing the overall gaming experience.
 
 
 These features were meticulously planned, with some being part of the initial project design (error checking and feedback), while others evolved organically as the project expanded in scope. The final result is a blend of elements aimed at delivering a captivating, enjoyable, and educational gaming experience.
@@ -107,7 +104,7 @@ These features were meticulously planned, with some being part of the initial pr
  - I want to be able to see my name on the board.
  - I want to be shown help messages showing instructions.
  - I want to know more about the results of my selection.
- - I want to restart the quiz after finish playing.
+ - I want to restart the game after finish playing.
  - I want no bugs or issues with the game.
 
 [Back to top ⇧](#airship-battles)
@@ -198,7 +195,7 @@ The initial flowchart for the project was created at the project's inception. Wh
  - Restarting message shown at the conclusion of the game.
  <br>
 
- ![Restarting message](docs/media/gifs/fet-restart-message.gif)
+ ![Restarting message](docs/media/gifs/feat-restart-message.gif)
 
  
 
@@ -226,11 +223,14 @@ The initial flowchart for the project was created at the project's inception. Wh
  
  ![Github icon opening page in new tab and name](docs/media/images/feat-footer.png)
 
+ <br>
+
+ [Back to top ⇧](#airship-battles)
+
 ---
 
 ## **Future Implementations**
 
-### Future Implementations
 To further enhance the "Airship Battles" game and provide an immersive gaming experience, the following features and improvements can be added in future updates:
 
 1. **Difficulty Levels:** Implement different difficulty levels, such as "Novice," "Captain," and "Admiral," each with varying levels of challenge. Players can choose their preferred difficulty to test their strategic skills.
@@ -313,6 +313,12 @@ Testing information can be found in a separate testing file [TESTING.md](/TESTIN
 - The author used [Space Quiz](https://github.com/Boiann/space-quiz) from [Boiann Github](https://github.com/Boiann) as the basis for README and TESTING templates.
 
 - The author used [Battleship](https://github.com/gbrough/battleship) from [Garrett Github](https://github.com/gbrough) as the basis for the logic in run.py templates.
+
+### **Image Used**
+
+- The author used [Airship Background](https://dronnnnn95.artstation.com/projects/D682E) from [Andrii Yermolenko](https://dronnnnn95.artstation.com/) as the background image.
+
+- The author used [Airship ASCII](https://www.ascii-art.de/ascii/xyz/zeppelin.txt) from [ASCII Art](https://www.ascii-art.de/) as header ASCII image.
 
 
 
