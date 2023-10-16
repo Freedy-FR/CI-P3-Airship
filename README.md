@@ -43,6 +43,8 @@ Visit the live site [Here.](https://pp3-airship.herokuapp.com/)
 
 * [Credits](#credits)
   * [Code used and adapted](#code-used-and-adapted)
+  * [Image Used](#image-used)
+  * [Websites visited to gather knowledge](#websites-visited-to-gather-knowledge)
   * [Acknowledgments](#acknowledgments)
 
 ---
